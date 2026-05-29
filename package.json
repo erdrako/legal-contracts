@@ -11,11 +11,11 @@
   ],
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "typecheck": "tsc -p tsconfig.json --noEmit"
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "validate:fixtures": "node scripts/validate-fixtures.mjs"
   },
   "devDependencies": {
     "typescript": "^5.9.3"
   },
   "private": false
 }
-

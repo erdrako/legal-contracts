@@ -1,0 +1,187 @@
+openapi: 3.1.0
+info:
+  title: LexMapa Backend API
+  version: 0.1.0
+  description: API inicial para consultar datos legales aprobados.
+servers:
+  - url: https://api.lexmapa.example
+    description: Placeholder de produccion
+paths:
+  /legal-items:
+    get:
+      summary: Lista items legales aprobados
+      responses:
+        "200":
+          description: Items legales disponibles
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - items
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/LegalItemOverview"
+  /legal-items/{id}/overview:
+    get:
+      summary: Obtiene una ficha simple de item legal
+      parameters:
+        - $ref: "#/components/parameters/LegalItemId"
+      responses:
+        "200":
+          description: Ficha simple aprobada
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LegalItemOverview"
+        "404":
+          description: Item no encontrado
+  /legal-items/{id}/freshness:
+    get:
+      summary: Obtiene estado de actualizacion del item legal
+      parameters:
+        - $ref: "#/components/parameters/LegalItemId"
+      responses:
+        "200":
+          description: Estado de freshness
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FreshnessInfo"
+        "404":
+          description: Item no encontrado
+  /search:
+    get:
+      summary: Busca items legales aprobados
+      parameters:
+        - name: q
+          in: query
+          required: true
+          schema:
+            type: string
+            minLength: 1
+      responses:
+        "200":
+          description: Resultados de busqueda
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - items
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/LegalItemOverview"
+components:
+  parameters:
+    LegalItemId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  schemas:
+    LegalItemOverview:
+      type: object
+      required:
+        - id
+        - title
+        - type
+        - status
+        - summaryPlainLanguage
+        - affectedSubjects
+        - currentEffects
+        - relationshipsSummary
+        - freshness
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        type:
+          type: string
+        status:
+          type: string
+        summaryPlainLanguage:
+          type: string
+        affectedSubjects:
+          type: array
+          items:
+            type: string
+        currentEffects:
+          type: object
+          required:
+            - obligations
+            - prohibitions
+            - rights
+            - sanctions
+          properties:
+            obligations:
+              type: integer
+              minimum: 0
+            prohibitions:
+              type: integer
+              minimum: 0
+            rights:
+              type: integer
+              minimum: 0
+            sanctions:
+              type: integer
+              minimum: 0
+        relationshipsSummary:
+          type: object
+          required:
+            - modifications
+            - regulations
+            - caseLaw
+            - doctrine
+            - administrativeCriteria
+            - pendingBills
+          properties:
+            modifications:
+              type: integer
+              minimum: 0
+            regulations:
+              type: integer
+              minimum: 0
+            caseLaw:
+              type: integer
+              minimum: 0
+            doctrine:
+              type: integer
+              minimum: 0
+            administrativeCriteria:
+              type: integer
+              minimum: 0
+            pendingBills:
+              type: integer
+              minimum: 0
+        freshness:
+          $ref: "#/components/schemas/FreshnessInfo"
+    FreshnessInfo:
+      type: object
+      required:
+        - status
+        - pendingValidationCount
+      properties:
+        status:
+          type: string
+          enum:
+            - UPDATED
+            - PARTIAL
+            - STALE
+            - UNKNOWN
+        lastValidatedAt:
+          type: string
+          format: date-time
+        lastSourceCheckedAt:
+          type: string
+          format: date-time
+        pendingValidationCount:
+          type: integer
+          minimum: 0
+

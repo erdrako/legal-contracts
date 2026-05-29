@@ -2,6 +2,10 @@
 
 Este repositorio no implementa APIs, pero documenta las superficies que otros repos deben respetar.
 
+La especificacion OpenAPI inicial vive en:
+
+- `openapi/backend.v1.yaml`
+
 ## Backend publico
 
 ```http
@@ -38,4 +42,3 @@ GET  /collection/jobs/:id
 POST /collection/legal-items/:id/refresh
 GET  /collection/sources/status
 ```
-

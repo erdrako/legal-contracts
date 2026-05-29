@@ -1,0 +1,259 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lexmapa.org/schemas/candidate-bundle.schema.json",
+  "title": "LexMapa Candidate Bundle",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "generatedAt",
+    "source",
+    "legalItems",
+    "provisions",
+    "citations",
+    "relationships",
+    "rules",
+    "concepts",
+    "snapshots"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string"
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "source": {
+      "$ref": "#/$defs/legalSource"
+    },
+    "legalItems": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/legalItem"
+      }
+    },
+    "provisions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/legalProvision"
+      }
+    },
+    "citations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/legalCitation"
+      }
+    },
+    "relationships": {
+      "type": "array"
+    },
+    "rules": {
+      "type": "array"
+    },
+    "concepts": {
+      "type": "array"
+    },
+    "snapshots": {
+      "type": "array"
+    }
+  },
+  "$defs": {
+    "legalSource": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "name",
+        "official"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "sourceUrl": {
+          "type": "string",
+          "format": "uri"
+        },
+        "retrievedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "official": {
+          "type": "boolean"
+        }
+      }
+    },
+    "jurisdiction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "country",
+        "level"
+      ],
+      "properties": {
+        "country": {
+          "const": "AR"
+        },
+        "level": {
+          "type": "string",
+          "enum": [
+            "NATIONAL",
+            "PROVINCIAL",
+            "MUNICIPAL",
+            "FEDERAL",
+            "UNKNOWN"
+          ]
+        },
+        "provinceCode": {
+          "type": "string"
+        },
+        "municipalityName": {
+          "type": "string"
+        }
+      }
+    },
+    "legalItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "type",
+        "title",
+        "status",
+        "jurisdiction",
+        "source"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "jurisdiction": {
+          "$ref": "#/$defs/jurisdiction"
+        },
+        "source": {
+          "$ref": "#/$defs/legalSource"
+        },
+        "issuedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "publishedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "effectiveFrom": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "effectiveTo": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "summaryPlainLanguage": {
+          "type": "string"
+        },
+        "technicalSummary": {
+          "type": "string"
+        }
+      }
+    },
+    "legalProvision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "legalItemId",
+        "type",
+        "label",
+        "order",
+        "textOriginal",
+        "status"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "legalItemId": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "ARTICLE",
+            "SECTION",
+            "PARAGRAPH",
+            "CLAUSE",
+            "ANNEX"
+          ]
+        },
+        "label": {
+          "type": "string"
+        },
+        "order": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "textOriginal": {
+          "type": "string"
+        },
+        "textCurrent": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "legalCitation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "sourceLegalItemId",
+        "originalText"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "sourceLegalItemId": {
+          "type": "string"
+        },
+        "provisionId": {
+          "type": "string"
+        },
+        "article": {
+          "type": "string"
+        },
+        "paragraph": {
+          "type": "string"
+        },
+        "originalText": {
+          "type": "string"
+        },
+        "sourceUrl": {
+          "type": "string",
+          "format": "uri"
+        },
+        "retrievedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  }
+}
+

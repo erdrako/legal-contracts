@@ -1,0 +1,209 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lexmapa.org/schemas/approved-bundle.schema.json",
+  "title": "LexMapa Approved Bundle",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "approvedAt",
+    "approvedBy",
+    "legalItems",
+    "provisions",
+    "citations",
+    "relationships",
+    "rules",
+    "concepts",
+    "snapshots",
+    "readModels"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string"
+    },
+    "approvedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "approvedBy": {
+      "type": "string"
+    },
+    "legalItems": {
+      "type": "array"
+    },
+    "provisions": {
+      "type": "array"
+    },
+    "citations": {
+      "type": "array"
+    },
+    "relationships": {
+      "type": "array"
+    },
+    "rules": {
+      "type": "array"
+    },
+    "concepts": {
+      "type": "array"
+    },
+    "snapshots": {
+      "type": "array"
+    },
+    "readModels": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "legalItemOverviews"
+      ],
+      "properties": {
+        "legalItemOverviews": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/legalItemOverview"
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "freshnessInfo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "pendingValidationCount"
+      ],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "UPDATED",
+            "PARTIAL",
+            "STALE",
+            "UNKNOWN"
+          ]
+        },
+        "lastValidatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "lastSourceCheckedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "pendingValidationCount": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "legalItemOverview": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title",
+        "type",
+        "status",
+        "summaryPlainLanguage",
+        "affectedSubjects",
+        "currentEffects",
+        "relationshipsSummary",
+        "freshness"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "summaryPlainLanguage": {
+          "type": "string"
+        },
+        "affectedSubjects": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "currentEffects": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "obligations",
+            "prohibitions",
+            "rights",
+            "sanctions"
+          ],
+          "properties": {
+            "obligations": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "prohibitions": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "rights": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "sanctions": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        "relationshipsSummary": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "modifications",
+            "regulations",
+            "caseLaw",
+            "doctrine",
+            "administrativeCriteria",
+            "pendingBills"
+          ],
+          "properties": {
+            "modifications": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "regulations": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "caseLaw": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "doctrine": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "administrativeCriteria": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "pendingBills": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        "freshness": {
+          "$ref": "#/$defs/freshnessInfo"
+        }
+      }
+    }
+  }
+}
+

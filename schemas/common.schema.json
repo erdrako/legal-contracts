@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lexmapa.org/schemas/common.schema.json",
+  "title": "LexMapa Common Definitions",
+  "type": "object",
+  "$defs": {
+    "isoDateString": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "legalItemType": {
+      "type": "string",
+      "enum": [
+        "CONSTITUTION",
+        "LAW",
+        "DECREE",
+        "RESOLUTION",
+        "ADMINISTRATIVE_DISPOSITION",
+        "REGULATION",
+        "ARTICLE",
+        "SECTION",
+        "ANNEX",
+        "CASE_LAW",
+        "ADMINISTRATIVE_CRITERION",
+        "DOCTRINE",
+        "BILL",
+        "TREATY",
+        "LEGAL_PRINCIPLE",
+        "LEGAL_DEFINITION"
+      ]
+    },
+    "legalStatus": {
+      "type": "string",
+      "enum": [
+        "VIGENTE",
+        "DEROGADO",
+        "MODIFICADO",
+        "PARCIALMENTE_VIGENTE",
+        "SUSPENDIDO",
+        "NO_VIGENTE",
+        "PROPUESTO",
+        "HISTORICO",
+        "DESCONOCIDO"
+      ]
+    },
+    "confidenceLevel": {
+      "type": "string",
+      "enum": [
+        "HIGH",
+        "MEDIUM",
+        "LOW"
+      ]
+    },
+    "reviewStatus": {
+      "type": "string",
+      "enum": [
+        "AUTO_EXTRACTED",
+        "NEEDS_REVIEW",
+        "REVIEWED",
+        "REJECTED"
+      ]
+    },
+    "freshnessStatus": {
+      "type": "string",
+      "enum": [
+        "UPDATED",
+        "PARTIAL",
+        "STALE",
+        "UNKNOWN"
+      ]
+    }
+  }
+}
+
