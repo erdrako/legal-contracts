@@ -28,6 +28,9 @@
     "approvedBy": {
       "type": "string"
     },
+    "dataset": {
+      "$ref": "#/$defs/datasetMetadata"
+    },
     "legalItems": {
       "type": "array"
     },
@@ -63,9 +66,82 @@
           }
         }
       }
+    },
+    "validationSummary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reports"
+      ],
+      "properties": {
+        "reports": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": true,
+            "required": [
+              "inputPath",
+              "summary",
+              "requiresHumanReview",
+              "warnings"
+            ],
+            "properties": {
+              "inputPath": {
+                "type": "string"
+              },
+              "summary": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "requiresHumanReview": {
+                "type": "boolean"
+              },
+              "warnings": {
+                "type": "array"
+              }
+            }
+          }
+        }
+      }
     }
   },
   "$defs": {
+    "datasetMetadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "generatedAt",
+        "disposable"
+      ],
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": [
+            "DEV_STRUCTURAL",
+            "HUMAN_REVIEWED",
+            "PRODUCTION_APPROVED"
+          ]
+        },
+        "generatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "disposable": {
+          "type": "boolean"
+        },
+        "warning": {
+          "type": "string"
+        },
+        "sourceCandidateCount": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
     "freshnessInfo": {
       "type": "object",
       "additionalProperties": false,
@@ -206,4 +282,3 @@
     }
   }
 }
-

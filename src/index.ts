@@ -119,6 +119,19 @@ export type ReviewStatus =
 
 export type FreshnessStatus = "UPDATED" | "PARTIAL" | "STALE" | "UNKNOWN";
 
+export type DatasetMode =
+  | "DEV_STRUCTURAL"
+  | "HUMAN_REVIEWED"
+  | "PRODUCTION_APPROVED";
+
+export interface DatasetMetadata {
+  mode: DatasetMode;
+  generatedAt: IsoDateString;
+  disposable: boolean;
+  warning?: string;
+  sourceCandidateCount?: number;
+}
+
 export interface Jurisdiction {
   country: "AR";
   level: "NATIONAL" | "PROVINCIAL" | "MUNICIPAL" | "FEDERAL" | "UNKNOWN";
@@ -332,6 +345,48 @@ export interface ValidationJob {
   reviewerNotes?: string;
 }
 
+export interface CandidateBundle {
+  schemaVersion: string;
+  generatedAt: IsoDateString;
+  source: LegalSource;
+  legalItems: LegalItem[];
+  provisions: LegalProvision[];
+  citations: LegalCitation[];
+  relationships: LegalRelationship[];
+  rules: LegalRule[];
+  concepts: LegalConcept[];
+  snapshots: LegalSnapshot[];
+}
+
+export interface ApprovedBundle {
+  schemaVersion: string;
+  approvedAt: IsoDateString;
+  approvedBy: string;
+  dataset?: DatasetMetadata;
+  legalItems: LegalItem[];
+  provisions: LegalProvision[];
+  citations: LegalCitation[];
+  relationships: LegalRelationship[];
+  rules: LegalRule[];
+  concepts: LegalConcept[];
+  snapshots: LegalSnapshot[];
+  readModels: {
+    legalItemOverviews: LegalItemOverviewDto[];
+  };
+  validationSummary?: {
+    reports: Array<{
+      inputPath: string;
+      summary: Record<string, number>;
+      requiresHumanReview: boolean;
+      warnings: Array<{
+        code: string;
+        severity?: string;
+        message: string;
+      }>;
+    }>;
+  };
+}
+
 export type LexMapaEvent =
   | "LegalDocumentFetched"
   | "LegalDocumentParsed"
@@ -346,4 +401,3 @@ export type LexMapaEvent =
   | "ValidationJobRejected"
   | "ApprovedLegalDataPromoted"
   | "LegalItemReadModelUpdated";
-

@@ -34,6 +34,8 @@ Debe contener:
 - Read models basicos.
 - Freshness.
 - Metadata de aprobacion.
+- Metadata de dataset cuando se trate de una salida de desarrollo o revision.
+- Resumen de validacion cuando el bundle se genera para flujos de desarrollo o revision.
 
 Archivo de referencia:
 
@@ -44,7 +46,7 @@ Archivo de referencia:
 
 - Un candidate bundle no es verdad final.
 - Un approved bundle puede ser usado por backend.
+- Un bundle con `dataset.mode = DEV_STRUCTURAL` es descartable y no debe usarse como dato legal aprobado.
 - Toda interpretacion debe tener cita.
 - Todo dato extraido automaticamente debe preservar `reviewStatus`.
 - La promocion de candidate a approved debe quedar auditada por `legal-datavalidation`.
-
