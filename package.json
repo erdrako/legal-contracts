@@ -1,0 +1,21 @@
+{
+  "name": "@lexmapa/contracts",
+  "version": "0.1.0",
+  "description": "Contratos compartidos para LexMapa.",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "docs"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  },
+  "private": false
+}
+

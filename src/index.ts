@@ -1,0 +1,349 @@
+export type IsoDateString = string;
+export type UrlString = string;
+
+export type LegalItemType =
+  | "CONSTITUTION"
+  | "LAW"
+  | "DECREE"
+  | "RESOLUTION"
+  | "ADMINISTRATIVE_DISPOSITION"
+  | "REGULATION"
+  | "ARTICLE"
+  | "SECTION"
+  | "ANNEX"
+  | "CASE_LAW"
+  | "ADMINISTRATIVE_CRITERION"
+  | "DOCTRINE"
+  | "BILL"
+  | "TREATY"
+  | "LEGAL_PRINCIPLE"
+  | "LEGAL_DEFINITION";
+
+export type LegalStatus =
+  | "VIGENTE"
+  | "DEROGADO"
+  | "MODIFICADO"
+  | "PARCIALMENTE_VIGENTE"
+  | "SUSPENDIDO"
+  | "NO_VIGENTE"
+  | "PROPUESTO"
+  | "HISTORICO"
+  | "DESCONOCIDO";
+
+export type LegalModality =
+  | "OBLIGATION"
+  | "PROHIBITION"
+  | "PERMISSION"
+  | "RIGHT"
+  | "POWER"
+  | "SANCTION"
+  | "DEFINITION"
+  | "PROCEDURE";
+
+export type LegalRelationshipType =
+  | "MODIFIES"
+  | "REPEALS"
+  | "REPLACES"
+  | "REGULATES"
+  | "IMPLEMENTS"
+  | "INTERPRETS"
+  | "CLARIFIES"
+  | "LIMITS"
+  | "EXPANDS"
+  | "REFERENCES"
+  | "DEFINES"
+  | "USES_CONCEPT"
+  | "APPLIES_TO"
+  | "EXEMPTS"
+  | "CREATES_EXCEPTION"
+  | "REMOVES_EXCEPTION"
+  | "SANCTIONS"
+  | "DELEGATES_AUTHORITY"
+  | "PROPOSES_TO_MODIFY"
+  | "PROPOSES_TO_REPEAL"
+  | "HAS_DOCTRINAL_COMMENTARY"
+  | "HAS_ADMINISTRATIVE_CRITERION"
+  | "HAS_CASE_LAW"
+  | "RELATED_TO";
+
+export type RelationshipStrength =
+  | "BINDING"
+  | "HIGHLY_RELEVANT"
+  | "PERSUASIVE"
+  | "INFORMATIVE"
+  | "PROPOSED";
+
+export type RelationshipStatus =
+  | "ACTIVE"
+  | "HISTORICAL"
+  | "SUPERSEDED"
+  | "DISPUTED"
+  | "PENDING"
+  | "UNKNOWN";
+
+export type LegalChangeType =
+  | "CREATES"
+  | "MODIFIES"
+  | "REPLACES"
+  | "REPEALS"
+  | "REGULATES"
+  | "SUSPENDS"
+  | "EXTENDS"
+  | "CLARIFIES"
+  | "ADDS_EXCEPTION"
+  | "REMOVES_EXCEPTION"
+  | "PROPOSES_CHANGE";
+
+export type LegalProperty =
+  | "subject"
+  | "affectedParty"
+  | "modality"
+  | "action"
+  | "object"
+  | "condition"
+  | "exception"
+  | "consequence"
+  | "deadline"
+  | "authority"
+  | "jurisdiction"
+  | "validity"
+  | "procedure";
+
+export type ConfidenceLevel = "HIGH" | "MEDIUM" | "LOW";
+
+export type ReviewStatus =
+  | "AUTO_EXTRACTED"
+  | "NEEDS_REVIEW"
+  | "REVIEWED"
+  | "REJECTED";
+
+export type FreshnessStatus = "UPDATED" | "PARTIAL" | "STALE" | "UNKNOWN";
+
+export interface Jurisdiction {
+  country: "AR";
+  level: "NATIONAL" | "PROVINCIAL" | "MUNICIPAL" | "FEDERAL" | "UNKNOWN";
+  provinceCode?: string;
+  municipalityName?: string;
+}
+
+export interface LegalSource {
+  id: string;
+  name: string;
+  sourceUrl?: UrlString;
+  retrievedAt?: IsoDateString;
+  official: boolean;
+}
+
+export interface LegalItem {
+  id: string;
+  type: LegalItemType;
+  title: string;
+  status: LegalStatus;
+  jurisdiction: Jurisdiction;
+  source: LegalSource;
+  issuedAt?: IsoDateString;
+  publishedAt?: IsoDateString;
+  effectiveFrom?: IsoDateString;
+  effectiveTo?: IsoDateString;
+  summaryPlainLanguage?: string;
+  technicalSummary?: string;
+}
+
+export interface LegalProvision {
+  id: string;
+  legalItemId: string;
+  type: "ARTICLE" | "SECTION" | "PARAGRAPH" | "CLAUSE" | "ANNEX";
+  label: string;
+  order: number;
+  textOriginal: string;
+  textCurrent?: string;
+  status: LegalStatus;
+}
+
+export interface LegalSubject {
+  id?: string;
+  label: string;
+  conceptId?: string;
+}
+
+export interface LegalAction {
+  verb: string;
+  label: string;
+}
+
+export interface LegalObject {
+  label: string;
+  conceptId?: string;
+}
+
+export interface LegalCondition {
+  label: string;
+  citationIds?: string[];
+}
+
+export interface LegalException {
+  label: string;
+  citationIds?: string[];
+}
+
+export interface LegalConsequence {
+  label: string;
+  type?: "SANCTION" | "RIGHT_EFFECT" | "PROCEDURAL_EFFECT" | "OTHER";
+  citationIds?: string[];
+}
+
+export interface LegalRule {
+  id: string;
+  sourceProvisionId: string;
+  modality: LegalModality;
+  subject: LegalSubject;
+  affectedParty?: LegalSubject;
+  action: LegalAction;
+  object?: LegalObject;
+  conditions: LegalCondition[];
+  exceptions: LegalException[];
+  consequences: LegalConsequence[];
+  citations: LegalCitation[];
+  confidence: ConfidenceLevel;
+  reviewStatus: ReviewStatus;
+}
+
+export interface LegalConcept {
+  id: string;
+  name: string;
+  descriptionPlainLanguage: string;
+  technicalDefinition?: string;
+  sourceLegalItemIds: string[];
+  relatedConceptIds: string[];
+  confidence: ConfidenceLevel;
+  reviewStatus: ReviewStatus;
+}
+
+export interface LegalRelationship {
+  id: string;
+  fromLegalItemId: string;
+  toLegalItemId: string;
+  relationshipType: LegalRelationshipType;
+  targetScope?: {
+    provisionId?: string;
+    article?: string;
+    paragraph?: string;
+    clause?: string;
+    conceptId?: string;
+  };
+  strength: RelationshipStrength;
+  status: RelationshipStatus;
+  effectiveFrom?: IsoDateString;
+  effectiveTo?: IsoDateString;
+  explanationPlainLanguage: string;
+  citations: LegalCitation[];
+  confidence: ConfidenceLevel;
+  reviewStatus: ReviewStatus;
+}
+
+export interface LegalPropertyChange {
+  property: LegalProperty;
+  previousValue?: string;
+  newValue?: string;
+  explanationPlainLanguage: string;
+}
+
+export interface LegalChange {
+  id: string;
+  changeType: LegalChangeType;
+  sourceLegalItemId: string;
+  targetLegalItemId: string;
+  targetProvisionId?: string;
+  publishedAt?: IsoDateString;
+  effectiveFrom?: IsoDateString;
+  beforeSnapshotId?: string;
+  afterSnapshotId?: string;
+  affectedProperties: LegalPropertyChange[];
+  explanationPlainLanguage: string;
+  citations: LegalCitation[];
+  confidence: ConfidenceLevel;
+  reviewStatus: ReviewStatus;
+}
+
+export interface LegalSnapshot {
+  id: string;
+  legalItemId: string;
+  snapshotDate: IsoDateString;
+  status: LegalStatus;
+  provisions: LegalProvision[];
+  rules: LegalRule[];
+  relationships: LegalRelationship[];
+  generatedFromChangeId?: string;
+  confidence: ConfidenceLevel;
+  reviewStatus: ReviewStatus;
+}
+
+export interface LegalCitation {
+  id: string;
+  sourceLegalItemId: string;
+  provisionId?: string;
+  article?: string;
+  paragraph?: string;
+  originalText: string;
+  sourceUrl?: UrlString;
+  retrievedAt?: IsoDateString;
+}
+
+export interface FreshnessInfo {
+  status: FreshnessStatus;
+  lastValidatedAt?: IsoDateString;
+  lastSourceCheckedAt?: IsoDateString;
+  pendingValidationCount: number;
+}
+
+export interface LegalItemOverviewDto {
+  id: string;
+  title: string;
+  type: LegalItemType;
+  status: LegalStatus;
+  summaryPlainLanguage: string;
+  affectedSubjects: string[];
+  currentEffects: {
+    obligations: number;
+    prohibitions: number;
+    rights: number;
+    sanctions: number;
+  };
+  relationshipsSummary: {
+    modifications: number;
+    regulations: number;
+    caseLaw: number;
+    doctrine: number;
+    administrativeCriteria: number;
+    pendingBills: number;
+  };
+  freshness: FreshnessInfo;
+}
+
+export type ValidationDecision = "APPROVE" | "REJECT" | "REQUEST_REVIEW";
+
+export interface ValidationJob {
+  id: string;
+  source: LegalSource;
+  status: "PENDING" | "RUNNING" | "NEEDS_REVIEW" | "APPROVED" | "REJECTED";
+  createdAt: IsoDateString;
+  updatedAt: IsoDateString;
+  candidateLegalItemIds: string[];
+  reviewerNotes?: string;
+}
+
+export type LexMapaEvent =
+  | "LegalDocumentFetched"
+  | "LegalDocumentParsed"
+  | "LegalItemCandidateCreated"
+  | "LegalProvisionCandidateCreated"
+  | "LegalRelationshipCandidateDetected"
+  | "LegalRuleCandidateExtracted"
+  | "LegalConceptCandidateExtracted"
+  | "LegalSnapshotCandidateCreated"
+  | "ValidationJobCreated"
+  | "ValidationJobApproved"
+  | "ValidationJobRejected"
+  | "ApprovedLegalDataPromoted"
+  | "LegalItemReadModelUpdated";
+
