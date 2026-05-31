@@ -51,6 +51,7 @@ src/
   index.ts
 docs/
   API_SURFACES.md
+  CHANGE_PROPOSAL_IMPORT_FORMAT.md
   MODEL_MAP.md
   VERSIONING.md
 ```
