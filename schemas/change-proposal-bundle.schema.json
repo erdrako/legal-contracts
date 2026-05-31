@@ -114,6 +114,27 @@
         }
       }
     },
+    "sourceLinks": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "officialAgendaSourceUrl"
+      ],
+      "properties": {
+        "officialAgendaSourceUrl": {
+          "type": "string"
+        },
+        "officialCitationUrl": {
+          "type": "string"
+        },
+        "proposedTextOriginalUrl": {
+          "type": "string"
+        },
+        "currentLawOriginalUrl": {
+          "type": "string"
+        }
+      }
+    },
     "plainLanguageSummary": {
       "type": "object",
       "additionalProperties": false,
@@ -348,12 +369,25 @@
         "title",
         "status",
         "jurisdiction",
+        "chamber",
+        "statusLabelForUsers",
+        "scheduledTreatmentDate",
+        "committees",
+        "officialDescription",
+        "plainLanguageSummary",
         "summary",
         "topics",
         "affectedGroups",
         "diffs",
         "queryExamples",
         "source",
+        "sourceLinks",
+        "sourceStatus",
+        "priority",
+        "dataKind",
+        "importedFrom",
+        "importedAt",
+        "lastCheckedAt",
         "originalSources",
         "dataStatus",
         "legalAdviceWarning"
@@ -370,6 +404,32 @@
         },
         "jurisdiction": {
           "$ref": "#/$defs/jurisdiction"
+        },
+        "chamber": {
+          "type": "string",
+          "enum": [
+            "SENATE",
+            "DEPUTIES"
+          ]
+        },
+        "statusLabelForUsers": {
+          "type": "string"
+        },
+        "scheduledTreatmentDate": {
+          "type": "string"
+        },
+        "committees": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "officialDescription": {
+          "type": "string"
+        },
+        "plainLanguageSummary": {
+          "type": "string"
         },
         "typeOfChange": {
           "type": "string"
@@ -393,7 +453,6 @@
         },
         "diffs": {
           "type": "array",
-          "minItems": 1,
           "items": {
             "$ref": "#/$defs/legalDiff"
           }
@@ -406,6 +465,43 @@
         },
         "source": {
           "$ref": "#/$defs/source"
+        },
+        "sourceLinks": {
+          "$ref": "#/$defs/sourceLinks"
+        },
+        "sourceStatus": {
+          "type": "string",
+          "enum": [
+            "LOADED",
+            "PENDING"
+          ]
+        },
+        "priority": {
+          "type": "string",
+          "enum": [
+            "HIGH",
+            "MEDIUM_HIGH",
+            "MEDIUM",
+            "MEDIUM_LOW",
+            "LOW"
+          ]
+        },
+        "dataKind": {
+          "type": "string",
+          "enum": [
+            "REAL_AGENDA_ITEM"
+          ]
+        },
+        "importedFrom": {
+          "type": "string"
+        },
+        "importedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "lastCheckedAt": {
+          "type": "string",
+          "format": "date-time"
         },
         "originalSources": {
           "type": "object",

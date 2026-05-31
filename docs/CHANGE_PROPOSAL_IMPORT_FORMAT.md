@@ -8,6 +8,10 @@ Objetivo: cargar propuestas de cambio legal comparables en la UI del MVP.
 Regla principal: no reemplazar el texto legal con explicaciones. Cada cambio
 debe traer texto actual, texto propuesto, fuente, estado y explicacion simple.
 
+Para items reales de agenda oficial sin textos originales cargados todavia, se
+usa `dataKind = "REAL_AGENDA_ITEM"` y `diffs = []`. La UI debe mostrar la agenda,
+la fuente oficial y el estado pendiente de la comparacion articulo por articulo.
+
 ## Formato esperado
 
 ```json
@@ -19,6 +23,15 @@ debe traer texto actual, texto propuesto, fuente, estado y explicacion simple.
       "id": "slug-estable-de-la-propuesta",
       "title": "Titulo claro de la reforma o propuesta",
       "status": "PROPOSED",
+      "chamber": "SENATE",
+      "statusLabelForUsers": "En tratamiento en comision",
+      "scheduledTreatmentDate": "2026-06-03T12:30:00-03:00",
+      "committees": [
+        "Comision 1",
+        "Comision 2"
+      ],
+      "officialDescription": "Descripcion oficial tomada de agenda, citacion, expediente o proyecto.",
+      "plainLanguageSummary": "Resumen breve en lenguaje simple.",
       "jurisdiction": {
         "country": "AR",
         "level": "NATIONAL"
@@ -149,6 +162,18 @@ debe traer texto actual, texto propuesto, fuente, estado y explicacion simple.
         "retrievedAt": "2026-05-31T00:00:00.000Z",
         "official": true
       },
+      "sourceLinks": {
+        "officialAgendaSourceUrl": "https://example.com/agenda-oficial",
+        "officialCitationUrl": "https://example.com/citacion-oficial",
+        "proposedTextOriginalUrl": "https://example.com/texto-propuesto",
+        "currentLawOriginalUrl": "https://example.com/texto-vigente"
+      },
+      "sourceStatus": "LOADED",
+      "priority": "HIGH",
+      "dataKind": "REAL_AGENDA_ITEM",
+      "importedFrom": "https://example.com/agenda-oficial",
+      "importedAt": "2026-05-31T00:00:00.000Z",
+      "lastCheckedAt": "2026-05-31T00:00:00.000Z",
       "originalSources": {
         "current": {
           "status": "LOADED",
@@ -202,6 +227,7 @@ debe traer texto actual, texto propuesto, fuente, estado y explicacion simple.
 `dataStatus`:
 
 - `MANUAL_FIXTURE`
+- `REAL_AGENDA_ITEM`
 - `TRUSTED_SOURCE`
 - `NEEDS_LEGAL_REVIEW`
 - `HUMAN_REVIEWED`
@@ -218,11 +244,12 @@ Objetivo UX: una persona sin conocimientos juridicos debe entender que cambia.
 
 Reglas:
 - No inventes texto legal.
+- Si solo hay datos de agenda y faltan textos originales, usa `dataKind = "REAL_AGENDA_ITEM"` y `diffs = []`.
 - Si falta una fuente o texto exacto, usa `sourceStatus = "PENDING"`, `originalSource.status = "PENDING"` y `originalSource.note = "Fuente original pendiente de carga"`.
 - No inventes links. Si no hay URL oficial o confiable, dejala pendiente.
 - No des asesoramiento legal personalizado.
 - Cada diff debe incluir texto actual, texto propuesto, tipo de cambio, tema afectado, grupo impactado, explicacion simple, impacto practico, fuente vigente, fuente propuesta y estado del dato.
-- Usa entre 3 y 5 diffs para el primer MVP.
+- Usa entre 3 y 5 diffs solo si tenes texto vigente y texto propuesto trazables.
 - Mantene ids estables en slug lower-case sin espacios.
 - La explicacion simple no reemplaza el texto legal.
 

@@ -39,9 +39,9 @@ flowchart TD
 Este mapeo responde preguntas como:
 
 ```text
-que cambia con la reforma laboral
-que cambia para los trabajadores
-que pasa con las indemnizaciones
+que se trata sobre Ley Hojarasca
+que cambia con Super RIGI
+que pasa con biocombustibles
 ```
 
 ## Tabla de mapeo

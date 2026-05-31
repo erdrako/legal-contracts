@@ -107,12 +107,16 @@ export type LegalDiffChangeType = "ADDED" | "REMOVED" | "MODIFIED";
 
 export type LegalDiffDataStatus =
   | "MANUAL_FIXTURE"
+  | "REAL_AGENDA_ITEM"
   | "TRUSTED_SOURCE"
   | "NEEDS_LEGAL_REVIEW"
   | "HUMAN_REVIEWED"
   | "PRODUCTION_APPROVED";
 
 export type OriginalSourceStatus = "LOADED" | "PENDING";
+export type LegislativeChamber = "SENATE" | "DEPUTIES";
+export type LegalChangeProposalDataKind = "REAL_AGENDA_ITEM";
+export type AgendaPriority = "HIGH" | "MEDIUM_HIGH" | "MEDIUM" | "MEDIUM_LOW" | "LOW";
 
 export type ImpactLevel = "LOW" | "MEDIUM" | "HIGH" | "UNKNOWN";
 
@@ -331,6 +335,13 @@ export interface PlainLanguageSummary {
   legalAdviceWarning: string;
 }
 
+export interface ChangeProposalSourceLinks {
+  officialAgendaSourceUrl: UrlString;
+  officialCitationUrl?: UrlString;
+  proposedTextOriginalUrl?: UrlString;
+  currentLawOriginalUrl?: UrlString;
+}
+
 export interface LegalVersion {
   id: string;
   label: string;
@@ -371,6 +382,12 @@ export interface LegalChangeProposal {
   title: string;
   status: LegalProposalStatus;
   jurisdiction: Jurisdiction;
+  chamber: LegislativeChamber;
+  statusLabelForUsers: string;
+  scheduledTreatmentDate: IsoDateString;
+  committees: string[];
+  officialDescription: string;
+  plainLanguageSummary: string;
   typeOfChange?: string;
   summary: PlainLanguageSummary;
   topics: AffectedTopic[];
@@ -378,6 +395,13 @@ export interface LegalChangeProposal {
   diffs: LegalDiff[];
   queryExamples: string[];
   source: LegalSource;
+  sourceLinks: ChangeProposalSourceLinks;
+  sourceStatus: OriginalSourceStatus;
+  priority: AgendaPriority;
+  dataKind: LegalChangeProposalDataKind;
+  importedFrom: UrlString;
+  importedAt: IsoDateString;
+  lastCheckedAt: IsoDateString;
   originalSources: {
     current: OriginalLegalSource;
     proposed: OriginalLegalSource;
@@ -399,11 +423,19 @@ export interface LegalChangeProposalOverviewDto {
   id: string;
   title: string;
   status: LegalProposalStatus;
+  chamber: LegislativeChamber;
+  statusLabelForUsers: string;
+  scheduledTreatmentDate: IsoDateString;
+  committees: string[];
   summaryPlainLanguage: string;
   affectedTopics: string[];
   affectedGroups: string[];
   diffCount: number;
   dataStatus: LegalDiffDataStatus;
+  dataKind: LegalChangeProposalDataKind;
+  priority: AgendaPriority;
+  sourceStatus: OriginalSourceStatus;
+  sourceLinks: ChangeProposalSourceLinks;
   source: LegalSource;
 }
 

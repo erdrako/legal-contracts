@@ -44,8 +44,13 @@ pueda devolver que diffs, temas y grupos coinciden con una pregunta simple.
 Fixture principal:
 
 ```text
-fixtures/change-proposals.reforma-laboral.example.json
+fixtures/change-proposals.congress-agenda.example.json
 ```
+
+Este fixture contiene items reales importados manualmente desde agendas
+oficiales de Senado y Diputados con `dataKind = REAL_AGENDA_ITEM`. Mientras no
+esten cargados los textos vigente/propuesto originales, los `diffs` quedan
+vacios para no inventar comparaciones legales.
 
 ## Estructura
 

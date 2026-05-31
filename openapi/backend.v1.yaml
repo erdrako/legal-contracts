@@ -147,11 +147,19 @@ components:
         - id
         - title
         - status
+        - chamber
+        - statusLabelForUsers
+        - scheduledTreatmentDate
+        - committees
         - summaryPlainLanguage
         - affectedTopics
         - affectedGroups
         - diffCount
         - dataStatus
+        - dataKind
+        - priority
+        - sourceStatus
+        - sourceLinks
         - source
       properties:
         id:
@@ -160,6 +168,19 @@ components:
           type: string
         status:
           type: string
+        chamber:
+          type: string
+          enum:
+            - SENATE
+            - DEPUTIES
+        statusLabelForUsers:
+          type: string
+        scheduledTreatmentDate:
+          type: string
+        committees:
+          type: array
+          items:
+            type: string
         summaryPlainLanguage:
           type: string
         affectedTopics:
@@ -175,6 +196,19 @@ components:
           minimum: 0
         dataStatus:
           type: string
+        dataKind:
+          type: string
+          enum:
+            - REAL_AGENDA_ITEM
+        priority:
+          type: string
+        sourceStatus:
+          type: string
+          enum:
+            - LOADED
+            - PENDING
+        sourceLinks:
+          $ref: "#/components/schemas/ChangeProposalSourceLinks"
         source:
           $ref: "#/components/schemas/LegalSource"
     LegalChangeProposalSearchResult:
@@ -243,11 +277,24 @@ components:
         - id
         - title
         - status
+        - chamber
+        - statusLabelForUsers
+        - scheduledTreatmentDate
+        - committees
+        - officialDescription
+        - plainLanguageSummary
         - summary
         - topics
         - affectedGroups
         - diffs
         - source
+        - sourceLinks
+        - sourceStatus
+        - priority
+        - dataKind
+        - importedFrom
+        - importedAt
+        - lastCheckedAt
         - originalSources
         - dataStatus
         - legalAdviceWarning
@@ -257,6 +304,23 @@ components:
         title:
           type: string
         status:
+          type: string
+        chamber:
+          type: string
+          enum:
+            - SENATE
+            - DEPUTIES
+        statusLabelForUsers:
+          type: string
+        scheduledTreatmentDate:
+          type: string
+        committees:
+          type: array
+          items:
+            type: string
+        officialDescription:
+          type: string
+        plainLanguageSummary:
           type: string
         summary:
           $ref: "#/components/schemas/PlainLanguageSummary"
@@ -278,6 +342,27 @@ components:
             type: string
         source:
           $ref: "#/components/schemas/LegalSource"
+        sourceLinks:
+          $ref: "#/components/schemas/ChangeProposalSourceLinks"
+        sourceStatus:
+          type: string
+          enum:
+            - LOADED
+            - PENDING
+        priority:
+          type: string
+        dataKind:
+          type: string
+          enum:
+            - REAL_AGENDA_ITEM
+        importedFrom:
+          type: string
+        importedAt:
+          type: string
+          format: date-time
+        lastCheckedAt:
+          type: string
+          format: date-time
         originalSources:
           type: object
           required:
@@ -457,6 +542,19 @@ components:
         official:
           type: boolean
         note:
+          type: string
+    ChangeProposalSourceLinks:
+      type: object
+      required:
+        - officialAgendaSourceUrl
+      properties:
+        officialAgendaSourceUrl:
+          type: string
+        officialCitationUrl:
+          type: string
+        proposedTextOriginalUrl:
+          type: string
+        currentLawOriginalUrl:
           type: string
     LegalSource:
       type: object

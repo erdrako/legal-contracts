@@ -69,22 +69,38 @@ for (const overview of approved.readModels.legalItemOverviews) {
   assert(overview.freshness.pendingValidationCount >= 0, "pendingValidationCount cannot be negative");
 }
 
-const changeProposalBundle = readJson(join(fixtureDir, "change-proposals.reforma-laboral.example.json"));
+const changeProposalBundle = readJson(join(fixtureDir, "change-proposals.congress-agenda.example.json"));
 assert(changeProposalBundle.schemaVersion === "0.1.0", "change proposal schemaVersion mismatch");
 assertIsoDate(changeProposalBundle.generatedAt, "changeProposalBundle.generatedAt");
 assertArray(changeProposalBundle.proposals, "changeProposalBundle.proposals");
 assert(changeProposalBundle.proposals.length > 0, "change proposal fixture must include at least one proposal");
+assert(changeProposalBundle.proposals.length === 8, "agenda fixture must include the 8 imported debate items");
 
 for (const proposal of changeProposalBundle.proposals) {
   assert(typeof proposal.id === "string" && proposal.id.length > 0, "proposal.id is required");
   assert(typeof proposal.title === "string" && proposal.title.length > 0, "proposal.title is required");
+  assert(["SENATE", "DEPUTIES"].includes(proposal.chamber), `proposal ${proposal.id} chamber is required`);
+  assert(typeof proposal.statusLabelForUsers === "string" && proposal.statusLabelForUsers.length > 0, `proposal ${proposal.id} statusLabelForUsers is required`);
+  assertIsoDate(proposal.scheduledTreatmentDate, `proposal ${proposal.id}.scheduledTreatmentDate`);
+  assertArray(proposal.committees, `proposal ${proposal.id}.committees`);
+  assert(proposal.committees.length > 0, `proposal ${proposal.id} must include committees`);
+  assert(typeof proposal.officialDescription === "string" && proposal.officialDescription.length > 0, `proposal ${proposal.id} officialDescription is required`);
+  assert(typeof proposal.plainLanguageSummary === "string" && proposal.plainLanguageSummary.length > 0, `proposal ${proposal.id} plainLanguageSummary is required`);
   assert(typeof proposal.summary?.short === "string", `proposal ${proposal.id} summary.short is required`);
   assertArray(proposal.topics, `proposal ${proposal.id}.topics`);
   assertArray(proposal.affectedGroups, `proposal ${proposal.id}.affectedGroups`);
   assertArray(proposal.diffs, `proposal ${proposal.id}.diffs`);
+  assert(proposal.dataKind === "REAL_AGENDA_ITEM", `proposal ${proposal.id} must be REAL_AGENDA_ITEM`);
+  assert(proposal.dataStatus === "REAL_AGENDA_ITEM", `proposal ${proposal.id} dataStatus must be REAL_AGENDA_ITEM`);
+  assert(["LOADED", "PENDING"].includes(proposal.sourceStatus), `proposal ${proposal.id} sourceStatus is required`);
+  assert(["HIGH", "MEDIUM_HIGH", "MEDIUM", "MEDIUM_LOW", "LOW"].includes(proposal.priority), `proposal ${proposal.id} priority is required`);
+  assert(typeof proposal.sourceLinks?.officialAgendaSourceUrl === "string" && proposal.sourceLinks.officialAgendaSourceUrl.startsWith("https://"), `proposal ${proposal.id} official agenda source is required`);
+  assert(typeof proposal.importedFrom === "string" && proposal.importedFrom.startsWith("https://"), `proposal ${proposal.id} importedFrom is required`);
+  assertIsoDate(proposal.importedAt, `proposal ${proposal.id}.importedAt`);
+  assertIsoDate(proposal.lastCheckedAt, `proposal ${proposal.id}.lastCheckedAt`);
   assertOriginalSource(proposal.originalSources?.current, `proposal ${proposal.id}.originalSources.current`);
   assertOriginalSource(proposal.originalSources?.proposed, `proposal ${proposal.id}.originalSources.proposed`);
-  assert(proposal.diffs.length >= 3 && proposal.diffs.length <= 5, `proposal ${proposal.id} must include 3 to 5 MVP diffs`);
+  assert(proposal.diffs.length === 0, `proposal ${proposal.id} must not invent diffs before text is loaded`);
 
   const topicIds = new Set(proposal.topics.map((topic) => topic.id));
   const groupIds = new Set(proposal.affectedGroups.map((group) => group.id));

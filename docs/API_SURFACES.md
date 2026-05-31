@@ -37,6 +37,11 @@ Estos campos permiten que el frontend explique por que una reforma fue
 encontrada y resalte los cambios relevantes sin depender de terminologia
 juridica.
 
+Para items reales de agenda oficial (`dataKind = REAL_AGENDA_ITEM`) la API debe
+exponer fuente de agenda, camara, fecha de tratamiento, comisiones y estado de
+fuentes. Si todavia no hay textos originales cargados, `/change-proposals/:id/diffs`
+puede devolver `diffs: []` y el frontend debe mostrar el estado pendiente.
+
 ## Datavalidation interno
 
 ```http
