@@ -9,6 +9,9 @@ La especificacion OpenAPI inicial vive en:
 ## Backend publico
 
 ```http
+GET /change-proposals
+GET /change-proposals/:id
+GET /change-proposals/:id/diffs
 GET /legal-items
 GET /legal-items/:id
 GET /legal-items/:id/overview
@@ -20,6 +23,9 @@ GET /legal-items/:id/freshness
 GET /legal-concepts/:id
 GET /search?q=
 ```
+
+Para el MVP, `/search?q=` debe priorizar preguntas en lenguaje simple y devolver
+propuestas de cambio legal cuando coinciden con la consulta.
 
 ## Datavalidation interno
 

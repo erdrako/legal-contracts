@@ -94,6 +94,26 @@ export type LegalChangeType =
   | "REMOVES_EXCEPTION"
   | "PROPOSES_CHANGE";
 
+export type LegalProposalStatus =
+  | "DRAFT"
+  | "PROPOSED"
+  | "IN_DEBATE"
+  | "APPROVED"
+  | "REJECTED"
+  | "ARCHIVED"
+  | "UNKNOWN";
+
+export type LegalDiffChangeType = "ADDED" | "REMOVED" | "MODIFIED";
+
+export type LegalDiffDataStatus =
+  | "MANUAL_FIXTURE"
+  | "TRUSTED_SOURCE"
+  | "NEEDS_LEGAL_REVIEW"
+  | "HUMAN_REVIEWED"
+  | "PRODUCTION_APPROVED";
+
+export type ImpactLevel = "LOW" | "MEDIUM" | "HIGH" | "UNKNOWN";
+
 export type LegalProperty =
   | "subject"
   | "affectedParty"
@@ -278,6 +298,96 @@ export interface LegalChange {
   reviewStatus: ReviewStatus;
 }
 
+export interface AffectedTopic {
+  id: string;
+  label: string;
+  summaryPlainLanguage: string;
+}
+
+export interface AffectedGroup {
+  id: string;
+  label: string;
+  impactSummary: string;
+}
+
+export interface PlainLanguageSummary {
+  headline: string;
+  short: string;
+  keyPoints: string[];
+  whatItMeans: string[];
+  limitations: string[];
+  legalAdviceWarning: string;
+}
+
+export interface LegalVersion {
+  id: string;
+  label: string;
+  legalItemId?: string;
+  legalItemTitle?: string;
+  provisionId?: string;
+  provisionLabel?: string;
+  text: string;
+  status: LegalStatus | LegalProposalStatus;
+  source: LegalSource;
+}
+
+export interface LegalDiff {
+  id: string;
+  proposalId: string;
+  title: string;
+  changeType: LegalDiffChangeType;
+  affectedTopicIds: string[];
+  affectedGroupIds: string[];
+  currentVersion: LegalVersion;
+  proposedVersion: LegalVersion;
+  explanationPlainLanguage: string;
+  practicalImpact: string;
+  impactLevel: ImpactLevel;
+  source: LegalSource;
+  dataStatus: LegalDiffDataStatus;
+  traceability: {
+    currentCitationId?: string;
+    proposedCitationId?: string;
+    notes?: string;
+  };
+}
+
+export interface LegalChangeProposal {
+  id: string;
+  title: string;
+  status: LegalProposalStatus;
+  jurisdiction: Jurisdiction;
+  summary: PlainLanguageSummary;
+  topics: AffectedTopic[];
+  affectedGroups: AffectedGroup[];
+  diffs: LegalDiff[];
+  queryExamples: string[];
+  source: LegalSource;
+  dataStatus: LegalDiffDataStatus;
+  createdAt?: IsoDateString;
+  updatedAt?: IsoDateString;
+  scopeNote?: string;
+  legalAdviceWarning: string;
+}
+
+export interface ChangeProposalBundle {
+  schemaVersion: string;
+  generatedAt: IsoDateString;
+  proposals: LegalChangeProposal[];
+}
+
+export interface LegalChangeProposalOverviewDto {
+  id: string;
+  title: string;
+  status: LegalProposalStatus;
+  summaryPlainLanguage: string;
+  affectedTopics: string[];
+  affectedGroups: string[];
+  diffCount: number;
+  dataStatus: LegalDiffDataStatus;
+  source: LegalSource;
+}
+
 export interface LegalSnapshot {
   id: string;
   legalItemId: string;
@@ -333,7 +443,7 @@ export interface LegalItemOverviewDto {
   freshness: FreshnessInfo;
 }
 
-export type ValidationDecision = "APPROVE" | "REJECT" | "REQUEST_REVIEW";
+export type ValidationDecision = "APPROVE" | "APPROVE_PARTIAL" | "REJECT" | "REQUEST_REVIEW";
 
 export interface ValidationJob {
   id: string;

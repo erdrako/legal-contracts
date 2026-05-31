@@ -69,4 +69,43 @@ for (const overview of approved.readModels.legalItemOverviews) {
   assert(overview.freshness.pendingValidationCount >= 0, "pendingValidationCount cannot be negative");
 }
 
+const changeProposalBundle = readJson(join(fixtureDir, "change-proposals.reforma-laboral.example.json"));
+assert(changeProposalBundle.schemaVersion === "0.1.0", "change proposal schemaVersion mismatch");
+assertIsoDate(changeProposalBundle.generatedAt, "changeProposalBundle.generatedAt");
+assertArray(changeProposalBundle.proposals, "changeProposalBundle.proposals");
+assert(changeProposalBundle.proposals.length > 0, "change proposal fixture must include at least one proposal");
+
+for (const proposal of changeProposalBundle.proposals) {
+  assert(typeof proposal.id === "string" && proposal.id.length > 0, "proposal.id is required");
+  assert(typeof proposal.title === "string" && proposal.title.length > 0, "proposal.title is required");
+  assert(typeof proposal.summary?.short === "string", `proposal ${proposal.id} summary.short is required`);
+  assertArray(proposal.topics, `proposal ${proposal.id}.topics`);
+  assertArray(proposal.affectedGroups, `proposal ${proposal.id}.affectedGroups`);
+  assertArray(proposal.diffs, `proposal ${proposal.id}.diffs`);
+  assert(proposal.diffs.length >= 3 && proposal.diffs.length <= 5, `proposal ${proposal.id} must include 3 to 5 MVP diffs`);
+
+  const topicIds = new Set(proposal.topics.map((topic) => topic.id));
+  const groupIds = new Set(proposal.affectedGroups.map((group) => group.id));
+
+  for (const diff of proposal.diffs) {
+    assert(diff.proposalId === proposal.id, `diff ${diff.id} references a different proposalId`);
+    assert(["ADDED", "REMOVED", "MODIFIED"].includes(diff.changeType), `diff ${diff.id} has invalid changeType`);
+    assert(typeof diff.title === "string" && diff.title.length > 0, `diff ${diff.id} title is required`);
+    assert(typeof diff.currentVersion?.text === "string" && diff.currentVersion.text.length > 0, `diff ${diff.id} current text is required`);
+    assert(typeof diff.proposedVersion?.text === "string" && diff.proposedVersion.text.length > 0, `diff ${diff.id} proposed text is required`);
+    assert(typeof diff.explanationPlainLanguage === "string" && diff.explanationPlainLanguage.length > 0, `diff ${diff.id} explanation is required`);
+    assert(typeof diff.practicalImpact === "string" && diff.practicalImpact.length > 0, `diff ${diff.id} practical impact is required`);
+    assert(typeof diff.source?.name === "string" && diff.source.name.length > 0, `diff ${diff.id} source is required`);
+    assert(typeof diff.dataStatus === "string" && diff.dataStatus.length > 0, `diff ${diff.id} dataStatus is required`);
+
+    for (const topicId of diff.affectedTopicIds) {
+      assert(topicIds.has(topicId), `diff ${diff.id} references unknown topic: ${topicId}`);
+    }
+
+    for (const groupId of diff.affectedGroupIds) {
+      assert(groupIds.has(groupId), `diff ${diff.id} references unknown group: ${groupId}`);
+    }
+  }
+}
+
 console.log("Fixtures and schemas parsed successfully.");

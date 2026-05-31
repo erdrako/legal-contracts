@@ -18,6 +18,32 @@ flowchart TD
   Change --> Snapshot["LegalSnapshot"]
 ```
 
+## Mapeo MVP de cambios legales
+
+El MVP prioriza una experiencia de comparacion legal antes que una vista
+normativa completa.
+
+```mermaid
+flowchart TD
+  Pregunta["Pregunta simple"] --> Proposal["LegalChangeProposal"]
+  Proposal --> Summary["PlainLanguageSummary"]
+  Proposal --> Topic["AffectedTopic"]
+  Proposal --> Group["AffectedGroup"]
+  Proposal --> Diff["LegalDiff"]
+  Diff --> Current["LegalVersion actual"]
+  Diff --> Proposed["LegalVersion propuesta"]
+  Diff --> Explanation["Explicacion simple"]
+  Diff --> Source["Fuente y trazabilidad"]
+```
+
+Este mapeo responde preguntas como:
+
+```text
+que cambia con la reforma laboral
+que cambia para los trabajadores
+que pasa con las indemnizaciones
+```
+
 ## Tabla de mapeo
 
 | Concepto legal real | Contrato |
@@ -30,6 +56,12 @@ flowchart TD
 | Cambio normativo o semantico | `LegalChange` |
 | Version en una fecha | `LegalSnapshot` |
 | Fuente exacta | `LegalCitation` |
+| Reforma, propuesta o paquete de cambios | `LegalChangeProposal` |
+| Texto actual o texto propuesto | `LegalVersion` |
+| Comparacion puntual entre versiones | `LegalDiff` |
+| Tema afectado explicado en simple | `AffectedTopic` |
+| Grupo impactado explicado en simple | `AffectedGroup` |
+| Resumen para personas no juridicas | `PlainLanguageSummary` |
 
 ## Regla de trazabilidad
 
@@ -43,4 +75,3 @@ explicacion
 -> estado de revision
 -> nivel de confianza
 ```
-

@@ -11,6 +11,8 @@ Este repositorio define el lenguaje comun entre `legal-datacollection`, `legal-d
 - Definir eventos entre servicios.
 - Mantener reglas de versionado de contratos.
 - Documentar como se mapean conceptos legales reales a objetos del sistema.
+- Definir el modelo MVP de comparacion legal: propuestas, versiones, diffs,
+  temas, grupos y resumen simple.
 
 ## Lo que este repositorio no debe contener
 
@@ -22,7 +24,25 @@ Este repositorio define el lenguaje comun entre `legal-datacollection`, `legal-d
 
 ## Estado inicial
 
-Este repositorio arranca con contratos TypeScript base y documentacion conceptual. En fases siguientes se agregaran JSON Schemas, OpenAPI specs y fixtures compartidos.
+Este repositorio arranca con contratos TypeScript base, JSON Schemas, OpenAPI,
+fixtures compartidos y documentacion conceptual.
+
+El foco MVP actual es `LegalChangeProposal`:
+
+```text
+LegalChangeProposal
+-> PlainLanguageSummary
+-> AffectedTopic
+-> AffectedGroup
+-> LegalDiff
+-> LegalVersion actual/propuesta
+```
+
+Fixture principal:
+
+```text
+fixtures/change-proposals.reforma-laboral.example.json
+```
 
 ## Estructura
 
@@ -52,4 +72,3 @@ Un cambio en contratos debe dejar claro:
 - Que repositorios consumidores quedan afectados.
 - Si rompe compatibilidad.
 - Como se migra un consumidor existente.
-

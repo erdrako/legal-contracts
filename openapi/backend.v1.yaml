@@ -2,11 +2,66 @@ openapi: 3.1.0
 info:
   title: LexMapa Backend API
   version: 0.1.0
-  description: API inicial para consultar datos legales aprobados.
+  description: API inicial para comparar cambios legales en lenguaje simple y consultar read models aprobados.
 servers:
   - url: https://api.lexmapa.example
     description: Placeholder de produccion
 paths:
+  /change-proposals:
+    get:
+      summary: Lista propuestas o reformas con comparacion legal disponible
+      responses:
+        "200":
+          description: Propuestas disponibles
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - proposals
+                properties:
+                  proposals:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/LegalChangeProposalOverview"
+  /change-proposals/{id}:
+    get:
+      summary: Obtiene una propuesta con resumen, temas, grupos y diffs
+      parameters:
+        - $ref: "#/components/parameters/ChangeProposalId"
+      responses:
+        "200":
+          description: Propuesta encontrada
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LegalChangeProposal"
+        "404":
+          description: Propuesta no encontrada
+  /change-proposals/{id}/diffs:
+    get:
+      summary: Obtiene los cambios articulo por articulo de una propuesta
+      parameters:
+        - $ref: "#/components/parameters/ChangeProposalId"
+      responses:
+        "200":
+          description: Diffs disponibles
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - proposalId
+                  - diffs
+                properties:
+                  proposalId:
+                    type: string
+                  diffs:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/LegalDiff"
+        "404":
+          description: Propuesta no encontrada
   /legal-items:
     get:
       summary: Lista items legales aprobados
@@ -54,7 +109,7 @@ paths:
           description: Item no encontrado
   /search:
     get:
-      summary: Busca items legales aprobados
+      summary: Busca en lenguaje simple propuestas de cambio y, si existen, items legales aprobados
       parameters:
         - name: q
           in: query
@@ -70,12 +125,22 @@ paths:
               schema:
                 type: object
                 required:
+                  - query
+                  - proposals
                   - items
                 properties:
+                  query:
+                    type: string
+                  proposals:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/LegalChangeProposalOverview"
                   items:
                     type: array
                     items:
                       $ref: "#/components/schemas/LegalItemOverview"
+        "422":
+          description: Query vacia
 components:
   parameters:
     LegalItemId:
@@ -84,7 +149,244 @@ components:
       required: true
       schema:
         type: string
+    ChangeProposalId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
   schemas:
+    LegalChangeProposalOverview:
+      type: object
+      required:
+        - id
+        - title
+        - status
+        - summaryPlainLanguage
+        - affectedTopics
+        - affectedGroups
+        - diffCount
+        - dataStatus
+        - source
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        status:
+          type: string
+        summaryPlainLanguage:
+          type: string
+        affectedTopics:
+          type: array
+          items:
+            type: string
+        affectedGroups:
+          type: array
+          items:
+            type: string
+        diffCount:
+          type: integer
+          minimum: 0
+        dataStatus:
+          type: string
+        source:
+          $ref: "#/components/schemas/LegalSource"
+    LegalChangeProposal:
+      type: object
+      required:
+        - id
+        - title
+        - status
+        - summary
+        - topics
+        - affectedGroups
+        - diffs
+        - source
+        - dataStatus
+        - legalAdviceWarning
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        status:
+          type: string
+        summary:
+          $ref: "#/components/schemas/PlainLanguageSummary"
+        topics:
+          type: array
+          items:
+            $ref: "#/components/schemas/AffectedTopic"
+        affectedGroups:
+          type: array
+          items:
+            $ref: "#/components/schemas/AffectedGroup"
+        diffs:
+          type: array
+          items:
+            $ref: "#/components/schemas/LegalDiff"
+        queryExamples:
+          type: array
+          items:
+            type: string
+        source:
+          $ref: "#/components/schemas/LegalSource"
+        dataStatus:
+          type: string
+        scopeNote:
+          type: string
+        legalAdviceWarning:
+          type: string
+    PlainLanguageSummary:
+      type: object
+      required:
+        - headline
+        - short
+        - keyPoints
+        - whatItMeans
+        - limitations
+        - legalAdviceWarning
+      properties:
+        headline:
+          type: string
+        short:
+          type: string
+        keyPoints:
+          type: array
+          items:
+            type: string
+        whatItMeans:
+          type: array
+          items:
+            type: string
+        limitations:
+          type: array
+          items:
+            type: string
+        legalAdviceWarning:
+          type: string
+    AffectedTopic:
+      type: object
+      required:
+        - id
+        - label
+        - summaryPlainLanguage
+      properties:
+        id:
+          type: string
+        label:
+          type: string
+        summaryPlainLanguage:
+          type: string
+    AffectedGroup:
+      type: object
+      required:
+        - id
+        - label
+        - impactSummary
+      properties:
+        id:
+          type: string
+        label:
+          type: string
+        impactSummary:
+          type: string
+    LegalDiff:
+      type: object
+      required:
+        - id
+        - proposalId
+        - title
+        - changeType
+        - affectedTopicIds
+        - affectedGroupIds
+        - currentVersion
+        - proposedVersion
+        - explanationPlainLanguage
+        - practicalImpact
+        - source
+        - dataStatus
+      properties:
+        id:
+          type: string
+        proposalId:
+          type: string
+        title:
+          type: string
+        changeType:
+          type: string
+          enum:
+            - ADDED
+            - REMOVED
+            - MODIFIED
+        affectedTopicIds:
+          type: array
+          items:
+            type: string
+        affectedGroupIds:
+          type: array
+          items:
+            type: string
+        currentVersion:
+          $ref: "#/components/schemas/LegalVersion"
+        proposedVersion:
+          $ref: "#/components/schemas/LegalVersion"
+        explanationPlainLanguage:
+          type: string
+        practicalImpact:
+          type: string
+        impactLevel:
+          type: string
+        source:
+          $ref: "#/components/schemas/LegalSource"
+        dataStatus:
+          type: string
+    LegalVersion:
+      type: object
+      required:
+        - id
+        - label
+        - text
+        - status
+        - source
+      properties:
+        id:
+          type: string
+        label:
+          type: string
+        legalItemId:
+          type: string
+        legalItemTitle:
+          type: string
+        provisionId:
+          type: string
+        provisionLabel:
+          type: string
+        text:
+          type: string
+        status:
+          type: string
+        source:
+          $ref: "#/components/schemas/LegalSource"
+    LegalSource:
+      type: object
+      required:
+        - id
+        - name
+        - official
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        sourceUrl:
+          type: string
+        retrievedAt:
+          type: string
+          format: date-time
+        official:
+          type: boolean
     LegalItemOverview:
       type: object
       required:
@@ -184,4 +486,3 @@ components:
         pendingValidationCount:
           type: integer
           minimum: 0
-
