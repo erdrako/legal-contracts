@@ -82,6 +82,15 @@ debe traer texto actual, texto propuesto, fuente, estado y explicacion simple.
               "sourceUrl": "https://example.com/fuente",
               "retrievedAt": "2026-05-31T00:00:00.000Z",
               "official": true
+            },
+            "sourceStatus": "LOADED",
+            "originalSource": {
+              "status": "LOADED",
+              "label": "Texto vigente original",
+              "name": "InfoLEG",
+              "sourceUrl": "https://example.com/texto-vigente",
+              "retrievedAt": "2026-05-31T00:00:00.000Z",
+              "official": true
             }
           },
           "proposedVersion": {
@@ -97,6 +106,15 @@ debe traer texto actual, texto propuesto, fuente, estado y explicacion simple.
               "id": "fuente-propuesta",
               "name": "Nombre de la fuente",
               "sourceUrl": "https://example.com/propuesta",
+              "retrievedAt": "2026-05-31T00:00:00.000Z",
+              "official": true
+            },
+            "sourceStatus": "LOADED",
+            "originalSource": {
+              "status": "LOADED",
+              "label": "Texto propuesto original",
+              "name": "Proyecto oficial",
+              "sourceUrl": "https://example.com/texto-propuesto",
               "retrievedAt": "2026-05-31T00:00:00.000Z",
               "official": true
             }
@@ -130,6 +148,21 @@ debe traer texto actual, texto propuesto, fuente, estado y explicacion simple.
         "sourceUrl": "https://example.com/propuesta",
         "retrievedAt": "2026-05-31T00:00:00.000Z",
         "official": true
+      },
+      "originalSources": {
+        "current": {
+          "status": "LOADED",
+          "label": "Texto vigente original",
+          "name": "Fuente vigente",
+          "sourceUrl": "https://example.com/texto-vigente",
+          "retrievedAt": "2026-05-31T00:00:00.000Z",
+          "official": true
+        },
+        "proposed": {
+          "status": "PENDING",
+          "label": "Texto propuesto original",
+          "note": "Fuente original pendiente de carga"
+        }
       },
       "dataStatus": "NEEDS_LEGAL_REVIEW",
       "createdAt": "2026-05-31T00:00:00.000Z",
@@ -185,9 +218,10 @@ Objetivo UX: una persona sin conocimientos juridicos debe entender que cambia.
 
 Reglas:
 - No inventes texto legal.
-- Si falta una fuente o texto exacto, marca el campo como pendiente en notes y usa dataStatus = "NEEDS_LEGAL_REVIEW".
+- Si falta una fuente o texto exacto, usa `sourceStatus = "PENDING"`, `originalSource.status = "PENDING"` y `originalSource.note = "Fuente original pendiente de carga"`.
+- No inventes links. Si no hay URL oficial o confiable, dejala pendiente.
 - No des asesoramiento legal personalizado.
-- Cada diff debe incluir texto actual, texto propuesto, tipo de cambio, tema afectado, grupo impactado, explicacion simple, impacto practico, fuente y estado del dato.
+- Cada diff debe incluir texto actual, texto propuesto, tipo de cambio, tema afectado, grupo impactado, explicacion simple, impacto practico, fuente vigente, fuente propuesta y estado del dato.
 - Usa entre 3 y 5 diffs para el primer MVP.
 - Mantene ids estables en slug lower-case sin espacios.
 - La explicacion simple no reemplaza el texto legal.
@@ -204,5 +238,6 @@ Devuelve solo JSON valido, sin markdown.
 - Todos los `affectedTopicIds` existen en `topics`.
 - Todos los `affectedGroupIds` existen en `affectedGroups`.
 - Cada diff tiene texto actual y texto propuesto.
-- Cada diff tiene fuente y `dataStatus`.
+- Cada diff tiene `currentVersion.originalSource`, `proposedVersion.originalSource`, `sourceStatus` y `dataStatus`.
+- Si falta URL original, se muestra `Fuente original pendiente de carga`.
 - El JSON no presenta la explicacion como consejo legal personalizado.

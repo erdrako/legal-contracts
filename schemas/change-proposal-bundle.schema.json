@@ -78,6 +78,42 @@
         }
       }
     },
+    "originalSource": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "label"
+      ],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "LOADED",
+            "PENDING"
+          ]
+        },
+        "label": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "sourceUrl": {
+          "type": "string"
+        },
+        "retrievedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "official": {
+          "type": "boolean"
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    },
     "plainLanguageSummary": {
       "type": "object",
       "additionalProperties": false,
@@ -167,7 +203,9 @@
         "label",
         "text",
         "status",
-        "source"
+        "source",
+        "sourceStatus",
+        "originalSource"
       ],
       "properties": {
         "id": {
@@ -196,6 +234,16 @@
         },
         "source": {
           "$ref": "#/$defs/source"
+        },
+        "sourceStatus": {
+          "type": "string",
+          "enum": [
+            "LOADED",
+            "PENDING"
+          ]
+        },
+        "originalSource": {
+          "$ref": "#/$defs/originalSource"
         }
       }
     },
@@ -306,6 +354,7 @@
         "diffs",
         "queryExamples",
         "source",
+        "originalSources",
         "dataStatus",
         "legalAdviceWarning"
       ],
@@ -321,6 +370,9 @@
         },
         "jurisdiction": {
           "$ref": "#/$defs/jurisdiction"
+        },
+        "typeOfChange": {
+          "type": "string"
         },
         "summary": {
           "$ref": "#/$defs/plainLanguageSummary"
@@ -354,6 +406,22 @@
         },
         "source": {
           "$ref": "#/$defs/source"
+        },
+        "originalSources": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "current",
+            "proposed"
+          ],
+          "properties": {
+            "current": {
+              "$ref": "#/$defs/originalSource"
+            },
+            "proposed": {
+              "$ref": "#/$defs/originalSource"
+            }
+          }
         },
         "dataStatus": {
           "type": "string"

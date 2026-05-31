@@ -5,7 +5,7 @@ import { join } from "node:path";
 const root = fileURLToPath(new URL("..", import.meta.url));
 
 function readJson(path) {
-  return JSON.parse(readFileSync(path, "utf8"));
+  return JSON.parse(readFileSync(path, "utf8").replace(/^\uFEFF/, ""));
 }
 
 function assert(condition, message) {
@@ -82,6 +82,8 @@ for (const proposal of changeProposalBundle.proposals) {
   assertArray(proposal.topics, `proposal ${proposal.id}.topics`);
   assertArray(proposal.affectedGroups, `proposal ${proposal.id}.affectedGroups`);
   assertArray(proposal.diffs, `proposal ${proposal.id}.diffs`);
+  assertOriginalSource(proposal.originalSources?.current, `proposal ${proposal.id}.originalSources.current`);
+  assertOriginalSource(proposal.originalSources?.proposed, `proposal ${proposal.id}.originalSources.proposed`);
   assert(proposal.diffs.length >= 3 && proposal.diffs.length <= 5, `proposal ${proposal.id} must include 3 to 5 MVP diffs`);
 
   const topicIds = new Set(proposal.topics.map((topic) => topic.id));
@@ -93,6 +95,10 @@ for (const proposal of changeProposalBundle.proposals) {
     assert(typeof diff.title === "string" && diff.title.length > 0, `diff ${diff.id} title is required`);
     assert(typeof diff.currentVersion?.text === "string" && diff.currentVersion.text.length > 0, `diff ${diff.id} current text is required`);
     assert(typeof diff.proposedVersion?.text === "string" && diff.proposedVersion.text.length > 0, `diff ${diff.id} proposed text is required`);
+    assertOriginalSource(diff.currentVersion.originalSource, `diff ${diff.id}.currentVersion.originalSource`);
+    assertOriginalSource(diff.proposedVersion.originalSource, `diff ${diff.id}.proposedVersion.originalSource`);
+    assert(["LOADED", "PENDING"].includes(diff.currentVersion.sourceStatus), `diff ${diff.id} currentVersion.sourceStatus is required`);
+    assert(["LOADED", "PENDING"].includes(diff.proposedVersion.sourceStatus), `diff ${diff.id} proposedVersion.sourceStatus is required`);
     assert(typeof diff.explanationPlainLanguage === "string" && diff.explanationPlainLanguage.length > 0, `diff ${diff.id} explanation is required`);
     assert(typeof diff.practicalImpact === "string" && diff.practicalImpact.length > 0, `diff ${diff.id} practical impact is required`);
     assert(typeof diff.source?.name === "string" && diff.source.name.length > 0, `diff ${diff.id} source is required`);
@@ -109,3 +115,12 @@ for (const proposal of changeProposalBundle.proposals) {
 }
 
 console.log("Fixtures and schemas parsed successfully.");
+
+function assertOriginalSource(source, label) {
+  assert(source && typeof source === "object" && !Array.isArray(source), `${label} is required`);
+  assert(["LOADED", "PENDING"].includes(source.status), `${label}.status must be LOADED or PENDING`);
+  assert(typeof source.label === "string" && source.label.length > 0, `${label}.label is required`);
+  if (source.status === "LOADED") {
+    assert(typeof source.sourceUrl === "string" && source.sourceUrl.length > 0, `${label}.sourceUrl is required when loaded`);
+  }
+}

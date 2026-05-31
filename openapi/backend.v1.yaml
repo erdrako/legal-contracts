@@ -203,6 +203,7 @@ components:
         - affectedGroups
         - diffs
         - source
+        - originalSources
         - dataStatus
         - legalAdviceWarning
       properties:
@@ -232,6 +233,16 @@ components:
             type: string
         source:
           $ref: "#/components/schemas/LegalSource"
+        originalSources:
+          type: object
+          required:
+            - current
+            - proposed
+          properties:
+            current:
+              $ref: "#/components/schemas/OriginalLegalSource"
+            proposed:
+              $ref: "#/components/schemas/OriginalLegalSource"
         dataStatus:
           type: string
         scopeNote:
@@ -350,6 +361,8 @@ components:
         - text
         - status
         - source
+        - sourceStatus
+        - originalSource
       properties:
         id:
           type: string
@@ -369,6 +382,37 @@ components:
           type: string
         source:
           $ref: "#/components/schemas/LegalSource"
+        sourceStatus:
+          type: string
+          enum:
+            - LOADED
+            - PENDING
+        originalSource:
+          $ref: "#/components/schemas/OriginalLegalSource"
+    OriginalLegalSource:
+      type: object
+      required:
+        - status
+        - label
+      properties:
+        status:
+          type: string
+          enum:
+            - LOADED
+            - PENDING
+        label:
+          type: string
+        name:
+          type: string
+        sourceUrl:
+          type: string
+        retrievedAt:
+          type: string
+          format: date-time
+        official:
+          type: boolean
+        note:
+          type: string
     LegalSource:
       type: object
       required:

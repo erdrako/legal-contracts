@@ -112,6 +112,8 @@ export type LegalDiffDataStatus =
   | "HUMAN_REVIEWED"
   | "PRODUCTION_APPROVED";
 
+export type OriginalSourceStatus = "LOADED" | "PENDING";
+
 export type ImpactLevel = "LOW" | "MEDIUM" | "HIGH" | "UNKNOWN";
 
 export type LegalProperty =
@@ -165,6 +167,16 @@ export interface LegalSource {
   sourceUrl?: UrlString;
   retrievedAt?: IsoDateString;
   official: boolean;
+}
+
+export interface OriginalLegalSource {
+  status: OriginalSourceStatus;
+  label: string;
+  name?: string;
+  sourceUrl?: UrlString;
+  retrievedAt?: IsoDateString;
+  official?: boolean;
+  note?: string;
 }
 
 export interface LegalItem {
@@ -329,6 +341,8 @@ export interface LegalVersion {
   text: string;
   status: LegalStatus | LegalProposalStatus;
   source: LegalSource;
+  sourceStatus: OriginalSourceStatus;
+  originalSource: OriginalLegalSource;
 }
 
 export interface LegalDiff {
@@ -357,12 +371,17 @@ export interface LegalChangeProposal {
   title: string;
   status: LegalProposalStatus;
   jurisdiction: Jurisdiction;
+  typeOfChange?: string;
   summary: PlainLanguageSummary;
   topics: AffectedTopic[];
   affectedGroups: AffectedGroup[];
   diffs: LegalDiff[];
   queryExamples: string[];
   source: LegalSource;
+  originalSources: {
+    current: OriginalLegalSource;
+    proposed: OriginalLegalSource;
+  };
   dataStatus: LegalDiffDataStatus;
   createdAt?: IsoDateString;
   updatedAt?: IsoDateString;
