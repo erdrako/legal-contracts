@@ -38,6 +38,9 @@ LegalChangeProposal
 -> LegalVersion actual/propuesta
 ```
 
+`GET /search?q=` usa `LegalChangeProposalSearchResultDto` para que el backend
+pueda devolver que diffs, temas y grupos coinciden con una pregunta simple.
+
 Fixture principal:
 
 ```text

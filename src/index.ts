@@ -407,6 +407,29 @@ export interface LegalChangeProposalOverviewDto {
   source: LegalSource;
 }
 
+export interface LegalChangeProposalSearchResultDto extends LegalChangeProposalOverviewDto {
+  matchedDiffIds: string[];
+  matchedTopicIds: string[];
+  matchedGroupIds: string[];
+  matchSummary: string;
+}
+
+export interface SearchResponseDto {
+  query: string;
+  proposals: LegalChangeProposalSearchResultDto[];
+  items: LegalItemOverviewDto[];
+  itemsUnavailable?: {
+    error: string;
+    message?: string;
+    dataset?: {
+      mode?: DatasetMode | string;
+      disposable?: boolean;
+      warning?: string;
+    };
+    servingPolicy?: Record<string, unknown>;
+  };
+}
+
 export interface LegalSnapshot {
   id: string;
   legalItemId: string;

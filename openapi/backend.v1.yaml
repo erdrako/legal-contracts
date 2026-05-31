@@ -123,22 +123,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                required:
-                  - query
-                  - proposals
-                  - items
-                properties:
-                  query:
-                    type: string
-                  proposals:
-                    type: array
-                    items:
-                      $ref: "#/components/schemas/LegalChangeProposalOverview"
-                  items:
-                    type: array
-                    items:
-                      $ref: "#/components/schemas/LegalItemOverview"
+                $ref: "#/components/schemas/SearchResponse"
         "422":
           description: Query vacia
 components:
@@ -192,6 +177,66 @@ components:
           type: string
         source:
           $ref: "#/components/schemas/LegalSource"
+    LegalChangeProposalSearchResult:
+      allOf:
+        - $ref: "#/components/schemas/LegalChangeProposalOverview"
+        - type: object
+          required:
+            - matchedDiffIds
+            - matchedTopicIds
+            - matchedGroupIds
+            - matchSummary
+          properties:
+            matchedDiffIds:
+              type: array
+              items:
+                type: string
+            matchedTopicIds:
+              type: array
+              items:
+                type: string
+            matchedGroupIds:
+              type: array
+              items:
+                type: string
+            matchSummary:
+              type: string
+    SearchResponse:
+      type: object
+      required:
+        - query
+        - proposals
+        - items
+      properties:
+        query:
+          type: string
+        proposals:
+          type: array
+          items:
+            $ref: "#/components/schemas/LegalChangeProposalSearchResult"
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/LegalItemOverview"
+        itemsUnavailable:
+          type: object
+          properties:
+            error:
+              type: string
+            message:
+              type: string
+            dataset:
+              type: object
+              properties:
+                mode:
+                  type: string
+                disposable:
+                  type: boolean
+                warning:
+                  type: string
+            servingPolicy:
+              type: object
+              additionalProperties: true
     LegalChangeProposal:
       type: object
       required:

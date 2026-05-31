@@ -25,7 +25,17 @@ GET /search?q=
 ```
 
 Para el MVP, `/search?q=` debe priorizar preguntas en lenguaje simple y devolver
-propuestas de cambio legal cuando coinciden con la consulta.
+propuestas de cambio legal cuando coinciden con la consulta. Cuando la busqueda
+coincide con temas, grupos o cambios especificos, la respuesta debe incluir:
+
+- `matchedDiffIds`
+- `matchedTopicIds`
+- `matchedGroupIds`
+- `matchSummary`
+
+Estos campos permiten que el frontend explique por que una reforma fue
+encontrada y resalte los cambios relevantes sin depender de terminologia
+juridica.
 
 ## Datavalidation interno
 
