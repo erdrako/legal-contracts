@@ -74,12 +74,12 @@ assert(changeProposalBundle.schemaVersion === "0.1.0", "change proposal schemaVe
 assertIsoDate(changeProposalBundle.generatedAt, "changeProposalBundle.generatedAt");
 assertArray(changeProposalBundle.proposals, "changeProposalBundle.proposals");
 assert(changeProposalBundle.proposals.length > 0, "change proposal fixture must include at least one proposal");
-assert(changeProposalBundle.proposals.length === 8, "agenda fixture must include the 8 imported debate items");
+assert(changeProposalBundle.proposals.length === 3, "agenda fixture must include the Senate vertical slice items");
 
 for (const proposal of changeProposalBundle.proposals) {
   assert(typeof proposal.id === "string" && proposal.id.length > 0, "proposal.id is required");
   assert(typeof proposal.title === "string" && proposal.title.length > 0, "proposal.title is required");
-  assert(["SENATE", "DEPUTIES"].includes(proposal.chamber), `proposal ${proposal.id} chamber is required`);
+  assert(proposal.chamber === "SENATE", `proposal ${proposal.id} must stay in the Senate vertical slice`);
   assert(typeof proposal.statusLabelForUsers === "string" && proposal.statusLabelForUsers.length > 0, `proposal ${proposal.id} statusLabelForUsers is required`);
   assertIsoDate(proposal.scheduledTreatmentDate, `proposal ${proposal.id}.scheduledTreatmentDate`);
   assertArray(proposal.committees, `proposal ${proposal.id}.committees`);
@@ -92,7 +92,7 @@ for (const proposal of changeProposalBundle.proposals) {
   assertArray(proposal.diffs, `proposal ${proposal.id}.diffs`);
   assert(proposal.dataKind === "REAL_AGENDA_ITEM", `proposal ${proposal.id} must be REAL_AGENDA_ITEM`);
   assert(proposal.dataStatus === "REAL_AGENDA_ITEM", `proposal ${proposal.id} dataStatus must be REAL_AGENDA_ITEM`);
-  assert(["LOADED", "PENDING"].includes(proposal.sourceStatus), `proposal ${proposal.id} sourceStatus is required`);
+  assert(["LOADED", "PENDING", "NEEDS_REVIEW"].includes(proposal.sourceStatus), `proposal ${proposal.id} sourceStatus is required`);
   assert(["HIGH", "MEDIUM_HIGH", "MEDIUM", "MEDIUM_LOW", "LOW"].includes(proposal.priority), `proposal ${proposal.id} priority is required`);
   assert(typeof proposal.sourceLinks?.officialAgendaSourceUrl === "string" && proposal.sourceLinks.officialAgendaSourceUrl.startsWith("https://"), `proposal ${proposal.id} official agenda source is required`);
   assert(typeof proposal.importedFrom === "string" && proposal.importedFrom.startsWith("https://"), `proposal ${proposal.id} importedFrom is required`);

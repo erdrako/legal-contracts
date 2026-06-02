@@ -113,7 +113,7 @@ export type LegalDiffDataStatus =
   | "HUMAN_REVIEWED"
   | "PRODUCTION_APPROVED";
 
-export type OriginalSourceStatus = "LOADED" | "PENDING";
+export type OriginalSourceStatus = "LOADED" | "PENDING" | "NEEDS_REVIEW";
 export type LegislativeChamber = "SENATE" | "DEPUTIES";
 export type LegalChangeProposalDataKind = "REAL_AGENDA_ITEM";
 export type AgendaPriority = "HIGH" | "MEDIUM_HIGH" | "MEDIUM" | "MEDIUM_LOW" | "LOW";
@@ -339,6 +339,10 @@ export interface ChangeProposalSourceLinks {
   officialAgendaSourceUrl: UrlString;
   officialCitationUrl?: UrlString;
   proposedTextOriginalUrl?: UrlString;
+  proposedTextOriginalUrls?: Array<{
+    label: string;
+    url: UrlString;
+  }>;
   currentLawOriginalUrl?: UrlString;
 }
 

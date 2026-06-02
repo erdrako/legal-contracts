@@ -1,6 +1,6 @@
 {
   "schemaVersion": "0.1.0",
-  "generatedAt": "2026-05-31T13:00:00.000Z",
+  "generatedAt": "2026-06-02T04:40:38.086Z",
   "proposals": [
     {
       "id": "ley-hojarasca",
@@ -11,39 +11,37 @@
         "level": "NATIONAL"
       },
       "chamber": "SENATE",
-      "statusLabelForUsers": "En tratamiento en comisión",
+      "statusLabelForUsers": "En tratamiento en comision",
       "scheduledTreatmentDate": "2026-06-03T12:30:00-03:00",
-      "committees": [
-        "Asuntos Constitucionales",
-        "Legislación General"
-      ],
-      "officialDescription": "Proyecto de ley en revisión que deroga legislación obsoleta \"Ley de Hojarasca\".",
-      "plainLanguageSummary": "Proyecto que propone derogar leyes consideradas obsoletas o sin aplicación actual.",
+      "committees": ["Asuntos Constitucionales", "Legislacion General"],
+      "officialDescription": "Proyecto de ley en revision que deroga legislacion obsoleta \"Ley de Hojarasca\". Expediente CD-1/26.",
+      "plainLanguageSummary": "Proyecto que propone derogar leyes consideradas obsoletas o sin aplicacion actual.",
       "typeOfChange": "Proyecto en agenda oficial",
       "summary": {
-        "headline": "Qué propone la Ley Hojarasca",
-        "short": "Proyecto que propone derogar leyes consideradas obsoletas o sin aplicación actual.",
+        "headline": "Ley Hojarasca",
+        "short": "Proyecto que propone derogar leyes consideradas obsoletas o sin aplicacion actual.",
         "keyPoints": [
-          "Está previsto para tratamiento conjunto en comisiones del Senado.",
-          "El temario oficial lo identifica como un proyecto de derogación de legislación obsoleta.",
-          "La comparación artículo por artículo todavía no está cargada."
+          "Figura en una agenda oficial de comisiones del Senado argentino.",
+          "LexMapa muestra este item como cambio en debate con fuente trazable.",
+          "La comparacion articulo por articulo todavia no esta cargada."
         ],
         "whatItMeans": [
-          "Puede afectar normas que hoy siguen formalmente vigentes pero se consideran sin uso actual.",
-          "Hasta cargar el texto del proyecto, LexMapa muestra solo datos de agenda y fuentes."
+          "El tema esta proximo a tratarse o revisarse en comision.",
+          "Hasta cargar y revisar los textos, no se muestran diffs legales inventados."
         ],
         "limitations": [
-          "Dato importado manualmente desde agenda oficial.",
-          "Texto propuesto original pendiente de carga.",
-          "No hay diff legal artículo por artículo cargado."
+          "Dato importado por Worker deterministico desde agenda oficial.",
+          "Texto legal pendiente de extraccion y revision para construir el diff.",
+          "No hay diff legal articulo por articulo cargado.",
+          "El listado de normas derogadas debe revisarse antes de generar comparaciones articulo por articulo."
         ],
-        "legalAdviceWarning": "LexMapa no brinda asesoramiento legal personalizado. Verifique siempre la fuente legal aplicable."
+        "legalAdviceWarning": "LexMapa explica cambios legales en lenguaje simple, pero no brinda asesoramiento legal personalizado."
       },
       "topics": [
         {
           "id": "legislacion-obsoleta",
-          "label": "Legislación obsoleta",
-          "summaryPlainLanguage": "Normas que podrían dejar de tener utilidad práctica o vigencia material."
+          "label": "Legislacion obsoleta",
+          "summaryPlainLanguage": "Normas que podrian dejar de tener utilidad practica o vigencia material."
         },
         {
           "id": "derogaciones",
@@ -52,12 +50,12 @@
         },
         {
           "id": "administracion-publica",
-          "label": "Administración pública",
+          "label": "Administracion publica",
           "summaryPlainLanguage": "Organismos estatales que aplican o dejan de aplicar reglas."
         },
         {
           "id": "simplificacion-normativa",
-          "label": "Simplificación normativa",
+          "label": "Simplificacion normativa",
           "summaryPlainLanguage": "Intentos de ordenar o reducir reglas legales acumuladas."
         }
       ],
@@ -65,315 +63,56 @@
         {
           "id": "ciudadanos",
           "label": "Ciudadanos",
-          "impactSummary": "Podrían verse alcanzados si alguna norma derogada regulaba trámites, derechos u obligaciones."
+          "impactSummary": "Podrian verse alcanzados si alguna norma derogada regulaba tramites, derechos u obligaciones."
         },
         {
           "id": "administracion-publica",
-          "label": "Administración pública",
-          "impactSummary": "Podría tener menos normas formales que revisar o aplicar."
+          "label": "Administracion publica",
+          "impactSummary": "Podria tener menos normas formales que revisar o aplicar."
         },
         {
           "id": "sectores-regulados",
           "label": "Sectores regulados",
-          "impactSummary": "Sectores alcanzados por normas derogadas podrían necesitar revisar el alcance real del cambio."
+          "impactSummary": "Sectores alcanzados por normas derogadas podrian necesitar revisar el alcance real del cambio."
         }
       ],
       "diffs": [],
-      "queryExamples": [
-        "hojarasca",
-        "ley hojarasca",
-        "legislación obsoleta",
-        "derogaciones"
-      ],
+      "queryExamples": ["hojarasca", "ley hojarasca", "legislacion obsoleta", "derogaciones"],
       "source": {
-        "id": "senado-asuntos-constitucionales-agenda-2026-06-03",
+        "id": "senado-asuntos-constitucionales-agenda-2026-06",
         "name": "Agenda oficial Senado - Asuntos Constitucionales",
         "sourceUrl": "https://www.senado.gob.ar/parlamentario/comisiones/verAgenda/50",
-        "retrievedAt": "2026-05-31T13:00:00.000Z",
+        "retrievedAt": "2026-06-02T04:40:38.086Z",
         "official": true
       },
       "sourceLinks": {
-        "officialAgendaSourceUrl": "https://www.senado.gob.ar/parlamentario/comisiones/verAgenda/50"
+        "officialAgendaSourceUrl": "https://www.senado.gob.ar/parlamentario/comisiones/verAgenda/50",
+        "officialCitationUrl": "https://www.senado.gob.ar/parlamentario/comisiones/verExp/1.26/CD/PL",
+        "proposedTextOriginalUrl": "https://www.senado.gob.ar/parlamentario/parlamentaria/496544/downloadPdf"
       },
-      "sourceStatus": "LOADED",
+      "sourceStatus": "NEEDS_REVIEW",
       "priority": "HIGH",
       "dataKind": "REAL_AGENDA_ITEM",
       "importedFrom": "https://www.senado.gob.ar/parlamentario/comisiones/verAgenda/50",
-      "importedAt": "2026-05-31T13:00:00.000Z",
-      "lastCheckedAt": "2026-05-31T13:00:00.000Z",
+      "importedAt": "2026-06-02T04:40:38.086Z",
+      "lastCheckedAt": "2026-06-02T04:40:38.086Z",
       "originalSources": {
         "current": {
           "status": "PENDING",
           "label": "Texto vigente original",
-          "note": "Fuente original pendiente de carga"
+          "note": "El proyecto deroga multiples normas y requiere revision humana para mapear cada texto vigente."
         },
         "proposed": {
-          "status": "PENDING",
+          "status": "LOADED",
           "label": "Texto propuesto original",
-          "note": "Fuente original pendiente de carga"
+          "name": "PDF oficial Senado - CD-1/26",
+          "sourceUrl": "https://www.senado.gob.ar/parlamentario/parlamentaria/496544/downloadPdf"
         }
       },
       "dataStatus": "REAL_AGENDA_ITEM",
-      "createdAt": "2026-05-31T13:00:00.000Z",
-      "updatedAt": "2026-05-31T13:00:00.000Z",
-      "scopeNote": "Dato real de agenda oficial. No incluye todavía texto del proyecto ni comparación jurídica.",
-      "legalAdviceWarning": "LexMapa no brinda asesoramiento legal personalizado. Verifique siempre la fuente legal aplicable."
-    },
-    {
-      "id": "super-rigi",
-      "title": "Súper RIGI",
-      "status": "IN_DEBATE",
-      "jurisdiction": {
-        "country": "AR",
-        "level": "NATIONAL"
-      },
-      "chamber": "DEPUTIES",
-      "statusLabelForUsers": "En tratamiento en comisión",
-      "scheduledTreatmentDate": "2026-06-03T15:00:00-03:00",
-      "committees": [
-        "Presupuesto y Hacienda",
-        "Industria",
-        "Ciencia, Tecnología e Innovación Productiva"
-      ],
-      "officialDescription": "Mensaje nro. 181/2026 y proyecto de ley por el cual se establece un régimen de incentivo para grandes inversiones en nuevas industrias (\"SÚPER RIGI\").",
-      "plainLanguageSummary": "Proyecto que propone beneficios e incentivos para grandes inversiones en nuevas industrias.",
-      "typeOfChange": "Proyecto en agenda oficial",
-      "summary": {
-        "headline": "Qué propone el Súper RIGI",
-        "short": "Proyecto que propone beneficios e incentivos para grandes inversiones en nuevas industrias.",
-        "keyPoints": [
-          "Está previsto para una reunión conjunta de comisiones de Diputados.",
-          "La citación oficial lo identifica como Mensaje 181/2026.",
-          "La comparación artículo por artículo todavía no está cargada."
-        ],
-        "whatItMeans": [
-          "Puede cambiar incentivos, beneficios fiscales o reglas de estabilidad para grandes proyectos.",
-          "Hasta cargar el proyecto, LexMapa no afirma impactos jurídicos concretos."
-        ],
-        "limitations": [
-          "Dato importado manualmente desde agenda y citación oficial.",
-          "Texto propuesto original pendiente de carga.",
-          "No hay diff legal artículo por artículo cargado."
-        ],
-        "legalAdviceWarning": "LexMapa no brinda asesoramiento legal personalizado. Verifique siempre la fuente legal aplicable."
-      },
-      "topics": [
-        {
-          "id": "inversiones",
-          "label": "Inversiones",
-          "summaryPlainLanguage": "Reglas que buscan atraer o regular inversiones de gran escala."
-        },
-        {
-          "id": "industria",
-          "label": "Industria",
-          "summaryPlainLanguage": "Actividades productivas y nuevas industrias."
-        },
-        {
-          "id": "tecnologia",
-          "label": "Tecnología",
-          "summaryPlainLanguage": "Sectores tecnológicos o de innovación productiva."
-        },
-        {
-          "id": "beneficios-fiscales",
-          "label": "Beneficios fiscales",
-          "summaryPlainLanguage": "Posibles ventajas tributarias o económicas previstas por el régimen."
-        },
-        {
-          "id": "estabilidad-normativa",
-          "label": "Estabilidad normativa",
-          "summaryPlainLanguage": "Reglas que podrían mantener condiciones legales durante cierto plazo."
-        }
-      ],
-      "affectedGroups": [
-        {
-          "id": "empresas",
-          "label": "Empresas",
-          "impactSummary": "Podrían evaluar nuevos incentivos para proyectos de inversión."
-        },
-        {
-          "id": "inversores",
-          "label": "Inversores",
-          "impactSummary": "Podrían recibir condiciones especiales si el proyecto avanza."
-        },
-        {
-          "id": "estado",
-          "label": "Estado",
-          "impactSummary": "Podría asumir compromisos fiscales o regulatorios vinculados a inversiones."
-        },
-        {
-          "id": "trabajadores",
-          "label": "Trabajadores",
-          "impactSummary": "Podrían verse afectados indirectamente por proyectos industriales o tecnológicos."
-        },
-        {
-          "id": "provincias",
-          "label": "Provincias",
-          "impactSummary": "Podrían intervenir según la localización de proyectos."
-        }
-      ],
-      "diffs": [],
-      "queryExamples": [
-        "super rigi",
-        "rigi",
-        "grandes inversiones",
-        "incentivos industriales"
-      ],
-      "source": {
-        "id": "diputados-agenda-2026-06-03",
-        "name": "Agenda oficial Diputados",
-        "sourceUrl": "https://www.diputados.gob.ar/comisiones/agenda/",
-        "retrievedAt": "2026-05-31T13:00:00.000Z",
-        "official": true
-      },
-      "sourceLinks": {
-        "officialAgendaSourceUrl": "https://www.diputados.gob.ar/comisiones/agenda/",
-        "officialCitationUrl": "https://parlamentaria.hcdn.gob.ar/comisiones/reuniones/1219/archivo/SXDQ9KZANPP5QTHY.pdf"
-      },
-      "sourceStatus": "LOADED",
-      "priority": "HIGH",
-      "dataKind": "REAL_AGENDA_ITEM",
-      "importedFrom": "https://www.diputados.gob.ar/comisiones/agenda/",
-      "importedAt": "2026-05-31T13:00:00.000Z",
-      "lastCheckedAt": "2026-05-31T13:00:00.000Z",
-      "originalSources": {
-        "current": {
-          "status": "PENDING",
-          "label": "Texto vigente original",
-          "note": "Fuente original pendiente de carga"
-        },
-        "proposed": {
-          "status": "PENDING",
-          "label": "Texto propuesto original",
-          "note": "Fuente original pendiente de carga"
-        }
-      },
-      "dataStatus": "REAL_AGENDA_ITEM",
-      "createdAt": "2026-05-31T13:00:00.000Z",
-      "updatedAt": "2026-05-31T13:00:00.000Z",
-      "scopeNote": "Dato real de agenda oficial. No incluye todavía texto del proyecto ni comparación jurídica.",
-      "legalAdviceWarning": "LexMapa no brinda asesoramiento legal personalizado. Verifique siempre la fuente legal aplicable."
-    },
-    {
-      "id": "transparencia-gestion-intereses",
-      "title": "Régimen de transparencia y publicidad de la gestión de intereses",
-      "status": "IN_DEBATE",
-      "jurisdiction": {
-        "country": "AR",
-        "level": "NATIONAL"
-      },
-      "chamber": "DEPUTIES",
-      "statusLabelForUsers": "En tratamiento en comisión / reunión informativa",
-      "scheduledTreatmentDate": "2026-06-03T14:00:00-03:00",
-      "committees": [
-        "Asuntos Constitucionales",
-        "Legislación General"
-      ],
-      "officialDescription": "Régimen de transparencia y publicidad de la gestión de intereses.",
-      "plainLanguageSummary": "Proyecto para regular y transparentar la gestión de intereses ante funcionarios o autoridades públicas.",
-      "typeOfChange": "Proyecto en agenda oficial",
-      "summary": {
-        "headline": "Qué propone el régimen de gestión de intereses",
-        "short": "Proyecto para regular y transparentar la gestión de intereses ante funcionarios o autoridades públicas.",
-        "keyPoints": [
-          "Está previsto para una reunión informativa conjunta de comisiones.",
-          "La agenda lo presenta como régimen de transparencia y publicidad.",
-          "La comparación artículo por artículo todavía no está cargada."
-        ],
-        "whatItMeans": [
-          "Puede establecer reglas sobre lobby, reuniones o gestiones ante autoridades públicas.",
-          "Hasta cargar el proyecto, LexMapa muestra alcance general y fuente oficial."
-        ],
-        "limitations": [
-          "Dato importado manualmente desde agenda y citación oficial.",
-          "Texto propuesto original pendiente de carga.",
-          "No hay diff legal artículo por artículo cargado."
-        ],
-        "legalAdviceWarning": "LexMapa no brinda asesoramiento legal personalizado. Verifique siempre la fuente legal aplicable."
-      },
-      "topics": [
-        {
-          "id": "transparencia",
-          "label": "Transparencia",
-          "summaryPlainLanguage": "Reglas para hacer visible información de interés público."
-        },
-        {
-          "id": "lobby",
-          "label": "Lobby",
-          "summaryPlainLanguage": "Gestiones de intereses ante funcionarios o autoridades."
-        },
-        {
-          "id": "etica-publica",
-          "label": "Ética pública",
-          "summaryPlainLanguage": "Estándares de conducta y publicidad en la función pública."
-        },
-        {
-          "id": "acceso-informacion",
-          "label": "Acceso a información",
-          "summaryPlainLanguage": "Disponibilidad de datos sobre gestiones o decisiones públicas."
-        }
-      ],
-      "affectedGroups": [
-        {
-          "id": "ciudadanos",
-          "label": "Ciudadanos",
-          "impactSummary": "Podrían acceder a más información sobre gestiones ante autoridades."
-        },
-        {
-          "id": "funcionarios",
-          "label": "Funcionarios",
-          "impactSummary": "Podrían tener nuevas obligaciones de registro o publicidad."
-        },
-        {
-          "id": "empresas",
-          "label": "Empresas",
-          "impactSummary": "Podrían tener reglas más claras para gestiones de interés."
-        },
-        {
-          "id": "organizaciones-civiles",
-          "label": "Organizaciones civiles",
-          "impactSummary": "Podrían quedar comprendidas si realizan gestiones ante autoridades."
-        }
-      ],
-      "diffs": [],
-      "queryExamples": [
-        "lobby",
-        "transparencia",
-        "gestión de intereses",
-        "ética pública"
-      ],
-      "source": {
-        "id": "diputados-agenda-2026-06-03",
-        "name": "Agenda oficial Diputados",
-        "sourceUrl": "https://www.diputados.gob.ar/comisiones/agenda/",
-        "retrievedAt": "2026-05-31T13:00:00.000Z",
-        "official": true
-      },
-      "sourceLinks": {
-        "officialAgendaSourceUrl": "https://www.diputados.gob.ar/comisiones/agenda/",
-        "officialCitationUrl": "https://parlamentaria.hcdn.gob.ar/comisiones/reuniones/1218/archivo/NXJK7ZVD9M8CC6PJ.pdf"
-      },
-      "sourceStatus": "LOADED",
-      "priority": "HIGH",
-      "dataKind": "REAL_AGENDA_ITEM",
-      "importedFrom": "https://www.diputados.gob.ar/comisiones/agenda/",
-      "importedAt": "2026-05-31T13:00:00.000Z",
-      "lastCheckedAt": "2026-05-31T13:00:00.000Z",
-      "originalSources": {
-        "current": {
-          "status": "PENDING",
-          "label": "Texto vigente original",
-          "note": "Fuente original pendiente de carga"
-        },
-        "proposed": {
-          "status": "PENDING",
-          "label": "Texto propuesto original",
-          "note": "Fuente original pendiente de carga"
-        }
-      },
-      "dataStatus": "REAL_AGENDA_ITEM",
-      "createdAt": "2026-05-31T13:00:00.000Z",
-      "updatedAt": "2026-05-31T13:00:00.000Z",
-      "scopeNote": "Dato real de agenda oficial. No incluye todavía texto del proyecto ni comparación jurídica.",
+      "createdAt": "2026-06-02T04:40:38.086Z",
+      "updatedAt": "2026-06-02T04:40:38.086Z",
+      "scopeNote": "Dato real de agenda oficial del Senado. No incluye todavia comparacion juridica validada.",
       "legalAdviceWarning": "LexMapa no brinda asesoramiento legal personalizado. Verifique siempre la fuente legal aplicable."
     },
     {
@@ -385,48 +124,46 @@
         "level": "NATIONAL"
       },
       "chamber": "SENATE",
-      "statusLabelForUsers": "En tratamiento en comisión",
+      "statusLabelForUsers": "En tratamiento en comision",
       "scheduledTreatmentDate": "2026-06-03T14:00:00-03:00",
-      "committees": [
-        "Minería, Energía y Combustibles",
-        "Presupuesto y Hacienda"
-      ],
-      "officialDescription": "Proyectos S-1271/25, S-1861/25, S-3/26, S-809/26 y S-916/26 sobre modificación o regulación del régimen de biocombustibles.",
+      "committees": ["Mineria, Energia y Combustibles", "Presupuesto y Hacienda"],
+      "officialDescription": "Proyectos S-1271/25, S-1861/25, S-3/26, S-809/26 y S-916/26 sobre modificacion o regulacion del regimen de biocombustibles.",
       "plainLanguageSummary": "Distintos proyectos proponen modificar o reemplazar reglas sobre biocombustibles, porcentajes de mezcla y marco regulatorio.",
-      "typeOfChange": "Proyectos en agenda oficial",
+      "typeOfChange": "Proyecto en agenda oficial",
       "summary": {
-        "headline": "Qué se debate sobre biocombustibles",
+        "headline": "Biocombustibles",
         "short": "Distintos proyectos proponen modificar o reemplazar reglas sobre biocombustibles, porcentajes de mezcla y marco regulatorio.",
         "keyPoints": [
-          "El temario oficial reúne cinco expedientes del Senado.",
-          "Los proyectos tratan biodiésel, bioetanol, mezcla con combustibles fósiles y marco regulatorio.",
-          "La comparación artículo por artículo todavía no está cargada."
+          "Figura en una agenda oficial de comisiones del Senado argentino.",
+          "LexMapa muestra este item como cambio en debate con fuente trazable.",
+          "La comparacion articulo por articulo todavia no esta cargada."
         ],
         "whatItMeans": [
-          "Puede afectar reglas de producción, mezcla, comercialización o autoconsumo de biocombustibles.",
-          "Hasta cargar los textos, LexMapa muestra solo agenda oficial y alcance temático."
+          "El tema esta proximo a tratarse o revisarse en comision.",
+          "Hasta cargar y revisar los textos, no se muestran diffs legales inventados."
         ],
         "limitations": [
-          "Dato importado manualmente desde agenda oficial.",
-          "Textos propuestos originales pendientes de carga.",
-          "No hay diff legal artículo por artículo cargado."
+          "Dato importado por Worker deterministico desde agenda oficial.",
+          "Texto legal pendiente de extraccion y revision para construir el diff.",
+          "No hay diff legal articulo por articulo cargado.",
+          "Hay cinco expedientes vinculados al mismo tratamiento; el diff debe construirse expediente por expediente."
         ],
-        "legalAdviceWarning": "LexMapa no brinda asesoramiento legal personalizado. Verifique siempre la fuente legal aplicable."
+        "legalAdviceWarning": "LexMapa explica cambios legales en lenguaje simple, pero no brinda asesoramiento legal personalizado."
       },
       "topics": [
         {
           "id": "energia",
-          "label": "Energía",
-          "summaryPlainLanguage": "Reglas vinculadas al abastecimiento y uso energético."
+          "label": "Energia",
+          "summaryPlainLanguage": "Reglas vinculadas al abastecimiento y uso energetico."
         },
         {
           "id": "combustibles",
           "label": "Combustibles",
-          "summaryPlainLanguage": "Mezcla, producción o comercialización de combustibles."
+          "summaryPlainLanguage": "Mezcla, produccion o comercializacion de combustibles."
         },
         {
           "id": "biodiesel",
-          "label": "Biodiésel",
+          "label": "Biodiesel",
           "summaryPlainLanguage": "Biocombustible que puede mezclarse con gasoil."
         },
         {
@@ -437,568 +174,220 @@
         {
           "id": "agroindustria",
           "label": "Agroindustria",
-          "summaryPlainLanguage": "Sectores productivos vinculados a insumos y producción de biocombustibles."
+          "summaryPlainLanguage": "Sectores productivos vinculados a insumos y produccion de biocombustibles."
         },
         {
           "id": "transporte",
           "label": "Transporte",
-          "summaryPlainLanguage": "Actividad que usa combustibles y podría verse afectada por mezclas obligatorias."
+          "summaryPlainLanguage": "Actividad que usa combustibles y podria verse afectada por mezclas obligatorias."
         }
       ],
       "affectedGroups": [
         {
           "id": "productores",
           "label": "Productores",
-          "impactSummary": "Podrían tener nuevas reglas de producción, cuotas o comercialización."
+          "impactSummary": "Podrian tener nuevas reglas de produccion, cuotas o comercializacion."
         },
         {
           "id": "consumidores",
           "label": "Consumidores",
-          "impactSummary": "Podrían verse afectados indirectamente en precios o disponibilidad de combustibles."
+          "impactSummary": "Podrian verse afectados indirectamente en precios o disponibilidad de combustibles."
         },
         {
           "id": "estaciones-servicio",
           "label": "Estaciones de servicio",
-          "impactSummary": "Podrían tener cambios en reglas de venta o mezcla."
+          "impactSummary": "Podrian tener cambios en reglas de venta o mezcla."
         },
         {
           "id": "transporte",
           "label": "Transporte",
-          "impactSummary": "Podría verse impactado por cambios en combustibles disponibles."
+          "impactSummary": "Podria verse impactado por cambios en combustibles disponibles."
         },
         {
           "id": "estado",
           "label": "Estado",
-          "impactSummary": "Podría regular cortes, cronogramas y condiciones del mercado."
+          "impactSummary": "Podria regular cortes, cronogramas y condiciones del mercado."
         }
       ],
       "diffs": [],
-      "queryExamples": [
-        "biocombustibles",
-        "biodiesel",
-        "bioetanol",
-        "combustibles",
-        "corte obligatorio"
-      ],
+      "queryExamples": ["biocombustibles", "biodiesel", "bioetanol", "combustibles", "corte obligatorio"],
       "source": {
-        "id": "senado-presupuesto-agenda-2026-06-03",
+        "id": "senado-presupuesto-agenda-2026-06",
         "name": "Agenda oficial Senado - Presupuesto y Hacienda",
         "sourceUrl": "https://www.senado.gob.ar/parlamentario/comisiones/verAgenda/54",
-        "retrievedAt": "2026-05-31T13:00:00.000Z",
+        "retrievedAt": "2026-06-02T04:40:38.086Z",
         "official": true
       },
       "sourceLinks": {
-        "officialAgendaSourceUrl": "https://www.senado.gob.ar/parlamentario/comisiones/verAgenda/54"
+        "officialAgendaSourceUrl": "https://www.senado.gob.ar/parlamentario/comisiones/verAgenda/54",
+        "officialCitationUrl": "https://www.senado.gob.ar/parlamentario/comisiones/verExp/1271.25/S/PL",
+        "currentLawOriginalUrl": "https://www.boletinoficial.gov.ar/detalleAviso/primera/247667/20210804",
+        "proposedTextOriginalUrl": "https://www.senado.gob.ar/parlamentario/parlamentaria/489983/downloadPdf",
+        "proposedTextOriginalUrls": [
+          {
+            "label": "Texto propuesto original - S-1271/25",
+            "url": "https://www.senado.gob.ar/parlamentario/parlamentaria/489983/downloadPdf"
+          },
+          {
+            "label": "Texto propuesto original - S-1861/25",
+            "url": "https://www.senado.gob.ar/parlamentario/parlamentaria/492357/downloadPdf"
+          },
+          {
+            "label": "Texto propuesto original - S-3/26",
+            "url": "https://www.senado.gob.ar/parlamentario/parlamentaria/493972/downloadPdf"
+          },
+          {
+            "label": "Texto propuesto original - S-809/26",
+            "url": "https://www.senado.gob.ar/parlamentario/parlamentaria/496663/downloadPdf"
+          },
+          {
+            "label": "Texto propuesto original - S-916/26",
+            "url": "https://www.senado.gob.ar/parlamentario/parlamentaria/496763/downloadPdf"
+          }
+        ]
       },
       "sourceStatus": "LOADED",
       "priority": "MEDIUM_HIGH",
       "dataKind": "REAL_AGENDA_ITEM",
       "importedFrom": "https://www.senado.gob.ar/parlamentario/comisiones/verAgenda/54",
-      "importedAt": "2026-05-31T13:00:00.000Z",
-      "lastCheckedAt": "2026-05-31T13:00:00.000Z",
+      "importedAt": "2026-06-02T04:40:38.086Z",
+      "lastCheckedAt": "2026-06-02T04:40:38.086Z",
       "originalSources": {
         "current": {
-          "status": "PENDING",
+          "status": "LOADED",
           "label": "Texto vigente original",
-          "note": "Fuente original pendiente de carga"
+          "name": "Boletin Oficial - Ley 27.640",
+          "sourceUrl": "https://www.boletinoficial.gov.ar/detalleAviso/primera/247667/20210804"
         },
         "proposed": {
-          "status": "PENDING",
+          "status": "LOADED",
           "label": "Texto propuesto original",
-          "note": "Fuente original pendiente de carga"
+          "name": "PDF oficial Senado - S-1271/25",
+          "sourceUrl": "https://www.senado.gob.ar/parlamentario/parlamentaria/489983/downloadPdf"
         }
       },
       "dataStatus": "REAL_AGENDA_ITEM",
-      "createdAt": "2026-05-31T13:00:00.000Z",
-      "updatedAt": "2026-05-31T13:00:00.000Z",
-      "scopeNote": "Dato real de agenda oficial. No incluye todavía texto del proyecto ni comparación jurídica.",
-      "legalAdviceWarning": "LexMapa no brinda asesoramiento legal personalizado. Verifique siempre la fuente legal aplicable."
-    },
-    {
-      "id": "convenios-seguridad-social-suiza-san-marino",
-      "title": "Convenios de Seguridad Social con Suiza y San Marino",
-      "status": "IN_DEBATE",
-      "jurisdiction": {
-        "country": "AR",
-        "level": "NATIONAL"
-      },
-      "chamber": "DEPUTIES",
-      "statusLabelForUsers": "En tratamiento en comisión",
-      "scheduledTreatmentDate": "2026-06-03T12:00:00-03:00",
-      "committees": [
-        "Relaciones Exteriores y Culto",
-        "Previsión y Seguridad Social"
-      ],
-      "officialDescription": "Proyectos que aprueban convenios de Seguridad Social entre Argentina y Suiza, y entre Argentina y San Marino, junto con sus acuerdos administrativos.",
-      "plainLanguageSummary": "Proyectos para coordinar reglas de seguridad social, aportes y beneficios entre Argentina y esos países.",
-      "typeOfChange": "Proyecto en agenda oficial",
-      "summary": {
-        "headline": "Qué tratan los convenios de seguridad social",
-        "short": "Proyectos para coordinar reglas de seguridad social, aportes y beneficios entre Argentina y esos países.",
-        "keyPoints": [
-          "La agenda de Diputados incluye convenios con Suiza y San Marino.",
-          "El temario oficial menciona acuerdos administrativos de aplicación.",
-          "La comparación artículo por artículo todavía no está cargada."
-        ],
-        "whatItMeans": [
-          "Puede afectar cómo se coordinan aportes, beneficios o trámites previsionales entre países.",
-          "Hasta cargar los textos, LexMapa no detalla efectos concretos por prestación."
-        ],
-        "limitations": [
-          "Dato importado manualmente desde agenda y citación oficial.",
-          "Textos propuestos originales pendientes de carga.",
-          "No hay diff legal artículo por artículo cargado."
-        ],
-        "legalAdviceWarning": "LexMapa no brinda asesoramiento legal personalizado. Verifique siempre la fuente legal aplicable."
-      },
-      "topics": [
-        {
-          "id": "jubilaciones",
-          "label": "Jubilaciones",
-          "summaryPlainLanguage": "Beneficios previsionales y reglas para acceder a ellos."
-        },
-        {
-          "id": "aportes",
-          "label": "Aportes",
-          "summaryPlainLanguage": "Contribuciones o períodos que pueden computarse para seguridad social."
-        },
-        {
-          "id": "seguridad-social",
-          "label": "Seguridad social",
-          "summaryPlainLanguage": "Sistema de beneficios, aportes y cobertura social."
-        },
-        {
-          "id": "trabajadores-migrantes",
-          "label": "Trabajadores migrantes",
-          "summaryPlainLanguage": "Personas que trabajan o trabajaron en más de un país."
-        }
-      ],
-      "affectedGroups": [
-        {
-          "id": "trabajadores-argentinos-exterior",
-          "label": "Trabajadores argentinos en el exterior",
-          "impactSummary": "Podrían necesitar coordinar aportes o beneficios con Argentina."
-        },
-        {
-          "id": "extranjeros-en-argentina",
-          "label": "Extranjeros en Argentina",
-          "impactSummary": "Podrían quedar alcanzados por reglas de coordinación previsional."
-        },
-        {
-          "id": "jubilados",
-          "label": "Jubilados",
-          "impactSummary": "Podrían verse afectados por reconocimiento o coordinación de beneficios."
-        },
-        {
-          "id": "aportantes",
-          "label": "Aportantes",
-          "impactSummary": "Podrían requerir información sobre períodos aportados en distintos países."
-        }
-      ],
-      "diffs": [],
-      "queryExamples": [
-        "seguridad social",
-        "Suiza",
-        "San Marino",
-        "jubilaciones",
-        "aportes"
-      ],
-      "source": {
-        "id": "diputados-agenda-2026-06-03",
-        "name": "Agenda oficial Diputados",
-        "sourceUrl": "https://www.diputados.gob.ar/comisiones/agenda/",
-        "retrievedAt": "2026-05-31T13:00:00.000Z",
-        "official": true
-      },
-      "sourceLinks": {
-        "officialAgendaSourceUrl": "https://www.diputados.gob.ar/comisiones/agenda/",
-        "officialCitationUrl": "https://parlamentaria.hcdn.gob.ar/comisiones/reuniones/1216/archivo/VXHSC47J9SJQDPRF.pdf"
-      },
-      "sourceStatus": "LOADED",
-      "priority": "MEDIUM",
-      "dataKind": "REAL_AGENDA_ITEM",
-      "importedFrom": "https://www.diputados.gob.ar/comisiones/agenda/",
-      "importedAt": "2026-05-31T13:00:00.000Z",
-      "lastCheckedAt": "2026-05-31T13:00:00.000Z",
-      "originalSources": {
-        "current": {
-          "status": "PENDING",
-          "label": "Texto vigente original",
-          "note": "Fuente original pendiente de carga"
-        },
-        "proposed": {
-          "status": "PENDING",
-          "label": "Texto propuesto original",
-          "note": "Fuente original pendiente de carga"
-        }
-      },
-      "dataStatus": "REAL_AGENDA_ITEM",
-      "createdAt": "2026-05-31T13:00:00.000Z",
-      "updatedAt": "2026-05-31T13:00:00.000Z",
-      "scopeNote": "Dato real de agenda oficial. No incluye todavía texto del proyecto ni comparación jurídica.",
-      "legalAdviceWarning": "LexMapa no brinda asesoramiento legal personalizado. Verifique siempre la fuente legal aplicable."
-    },
-    {
-      "id": "convenio-argentina-francia-doble-imposicion",
-      "title": "Convenio Argentina-Francia sobre doble imposición",
-      "status": "IN_DEBATE",
-      "jurisdiction": {
-        "country": "AR",
-        "level": "NATIONAL"
-      },
-      "chamber": "DEPUTIES",
-      "statusLabelForUsers": "En tratamiento en comisión",
-      "scheduledTreatmentDate": "2026-06-03T10:00:00-03:00",
-      "committees": [
-        "Relaciones Exteriores y Culto",
-        "Presupuesto y Hacienda"
-      ],
-      "officialDescription": "Proyecto de ley por el cual se aprueba el Protocolo de enmienda al Convenio entre Argentina y Francia para evitar la doble imposición y prevenir la evasión fiscal en materia de impuestos sobre la renta y el patrimonio.",
-      "plainLanguageSummary": "Proyecto para actualizar reglas tributarias entre Argentina y Francia y evitar que ciertos ingresos o patrimonios tributen dos veces.",
-      "typeOfChange": "Proyecto en agenda oficial",
-      "summary": {
-        "headline": "Qué cambia con el convenio Argentina-Francia",
-        "short": "Proyecto para actualizar reglas tributarias entre Argentina y Francia y evitar que ciertos ingresos o patrimonios tributen dos veces.",
-        "keyPoints": [
-          "La agenda de Diputados prevé su tratamiento en reunión conjunta.",
-          "El temario oficial identifica un protocolo de enmienda al convenio tributario.",
-          "La comparación artículo por artículo todavía no está cargada."
-        ],
-        "whatItMeans": [
-          "Puede afectar reglas tributarias internacionales para personas o empresas con actividad entre ambos países.",
-          "Hasta cargar el texto del protocolo, LexMapa no detalla cambios técnicos."
-        ],
-        "limitations": [
-          "Dato importado manualmente desde agenda y citación oficial.",
-          "Texto propuesto original pendiente de carga.",
-          "No hay diff legal artículo por artículo cargado."
-        ],
-        "legalAdviceWarning": "LexMapa no brinda asesoramiento legal personalizado. Verifique siempre la fuente legal aplicable."
-      },
-      "topics": [
-        {
-          "id": "impuestos",
-          "label": "Impuestos",
-          "summaryPlainLanguage": "Reglas sobre tributos aplicables a renta o patrimonio."
-        },
-        {
-          "id": "inversiones",
-          "label": "Inversiones",
-          "summaryPlainLanguage": "Operaciones económicas entre Argentina y Francia."
-        },
-        {
-          "id": "tratados-internacionales",
-          "label": "Tratados internacionales",
-          "summaryPlainLanguage": "Acuerdos entre Estados que requieren aprobación legislativa."
-        },
-        {
-          "id": "evasion-fiscal",
-          "label": "Evasión fiscal",
-          "summaryPlainLanguage": "Reglas para prevenir incumplimientos tributarios."
-        }
-      ],
-      "affectedGroups": [
-        {
-          "id": "empresas",
-          "label": "Empresas",
-          "impactSummary": "Podrían revisar reglas fiscales para operaciones entre ambos países."
-        },
-        {
-          "id": "inversores",
-          "label": "Inversores",
-          "impactSummary": "Podrían verse alcanzados por reglas para evitar doble tributación."
-        },
-        {
-          "id": "personas-actividad-argentina-francia",
-          "label": "Personas con actividad económica entre Argentina y Francia",
-          "impactSummary": "Podrían necesitar revisar si el convenio modifica su situación fiscal."
-        }
-      ],
-      "diffs": [],
-      "queryExamples": [
-        "doble imposición",
-        "Francia",
-        "impuestos",
-        "tratado tributario"
-      ],
-      "source": {
-        "id": "diputados-agenda-2026-06-03",
-        "name": "Agenda oficial Diputados",
-        "sourceUrl": "https://www.diputados.gob.ar/comisiones/agenda/",
-        "retrievedAt": "2026-05-31T13:00:00.000Z",
-        "official": true
-      },
-      "sourceLinks": {
-        "officialAgendaSourceUrl": "https://www.diputados.gob.ar/comisiones/agenda/",
-        "officialCitationUrl": "https://parlamentaria.hcdn.gob.ar/comisiones/reuniones/1215/archivo/PVN7M7QAVY7MX067.pdf"
-      },
-      "sourceStatus": "LOADED",
-      "priority": "MEDIUM",
-      "dataKind": "REAL_AGENDA_ITEM",
-      "importedFrom": "https://www.diputados.gob.ar/comisiones/agenda/",
-      "importedAt": "2026-05-31T13:00:00.000Z",
-      "lastCheckedAt": "2026-05-31T13:00:00.000Z",
-      "originalSources": {
-        "current": {
-          "status": "PENDING",
-          "label": "Texto vigente original",
-          "note": "Fuente original pendiente de carga"
-        },
-        "proposed": {
-          "status": "PENDING",
-          "label": "Texto propuesto original",
-          "note": "Fuente original pendiente de carga"
-        }
-      },
-      "dataStatus": "REAL_AGENDA_ITEM",
-      "createdAt": "2026-05-31T13:00:00.000Z",
-      "updatedAt": "2026-05-31T13:00:00.000Z",
-      "scopeNote": "Dato real de agenda oficial. No incluye todavía texto del proyecto ni comparación jurídica.",
-      "legalAdviceWarning": "LexMapa no brinda asesoramiento legal personalizado. Verifique siempre la fuente legal aplicable."
-    },
-    {
-      "id": "acuerdo-pesca-ilegal",
-      "title": "Acuerdo contra pesca ilegal",
-      "status": "IN_DEBATE",
-      "jurisdiction": {
-        "country": "AR",
-        "level": "NATIONAL"
-      },
-      "chamber": "DEPUTIES",
-      "statusLabelForUsers": "En tratamiento en comisión",
-      "scheduledTreatmentDate": "2026-06-03T11:00:00-03:00",
-      "committees": [
-        "Relaciones Exteriores y Culto",
-        "Intereses Marítimos, Fluviales, Pesqueros y Portuarios"
-      ],
-      "officialDescription": "Proyecto de ley por el cual se aprueba el Acuerdo sobre medidas del Estado Rector del Puerto destinadas a prevenir, desalentar y eliminar la pesca ilegal, no declarada y no reglamentada, celebrado en Roma el 22 de noviembre de 2009 en el marco de la FAO.",
-      "plainLanguageSummary": "Proyecto para aprobar un acuerdo internacional orientado a combatir la pesca ilegal.",
-      "typeOfChange": "Proyecto en agenda oficial",
-      "summary": {
-        "headline": "Qué propone el acuerdo contra pesca ilegal",
-        "short": "Proyecto para aprobar un acuerdo internacional orientado a combatir la pesca ilegal.",
-        "keyPoints": [
-          "La agenda de Diputados prevé su tratamiento en reunión conjunta.",
-          "El temario oficial vincula el acuerdo con medidas del Estado rector del puerto.",
-          "La comparación artículo por artículo todavía no está cargada."
-        ],
-        "whatItMeans": [
-          "Puede afectar controles portuarios y reglas contra pesca ilegal no declarada o no reglamentada.",
-          "Hasta cargar el texto del acuerdo, LexMapa no detalla obligaciones concretas."
-        ],
-        "limitations": [
-          "Dato importado manualmente desde agenda y citación oficial.",
-          "Texto propuesto original pendiente de carga.",
-          "No hay diff legal artículo por artículo cargado."
-        ],
-        "legalAdviceWarning": "LexMapa no brinda asesoramiento legal personalizado. Verifique siempre la fuente legal aplicable."
-      },
-      "topics": [
-        {
-          "id": "pesca",
-          "label": "Pesca",
-          "summaryPlainLanguage": "Actividad pesquera y control de recursos marítimos."
-        },
-        {
-          "id": "ambiente",
-          "label": "Ambiente",
-          "summaryPlainLanguage": "Protección de recursos naturales y ecosistemas."
-        },
-        {
-          "id": "comercio-exterior",
-          "label": "Comercio exterior",
-          "summaryPlainLanguage": "Reglas sobre ingreso, salida o control de productos."
-        },
-        {
-          "id": "puertos",
-          "label": "Puertos",
-          "summaryPlainLanguage": "Controles y medidas vinculadas al Estado rector del puerto."
-        }
-      ],
-      "affectedGroups": [
-        {
-          "id": "sector-pesquero",
-          "label": "Sector pesquero",
-          "impactSummary": "Podría quedar alcanzado por controles o medidas portuarias."
-        },
-        {
-          "id": "puertos",
-          "label": "Puertos",
-          "impactSummary": "Podrían tener nuevas responsabilidades de control."
-        },
-        {
-          "id": "estado",
-          "label": "Estado",
-          "impactSummary": "Podría asumir obligaciones de control internacional."
-        },
-        {
-          "id": "ambiente",
-          "label": "Ambiente",
-          "impactSummary": "Podría verse protegido frente a prácticas ilegales de pesca."
-        }
-      ],
-      "diffs": [],
-      "queryExamples": [
-        "pesca ilegal",
-        "pesca",
-        "FAO",
-        "puertos"
-      ],
-      "source": {
-        "id": "diputados-agenda-2026-06-03",
-        "name": "Agenda oficial Diputados",
-        "sourceUrl": "https://www.diputados.gob.ar/comisiones/agenda/",
-        "retrievedAt": "2026-05-31T13:00:00.000Z",
-        "official": true
-      },
-      "sourceLinks": {
-        "officialAgendaSourceUrl": "https://www.diputados.gob.ar/comisiones/agenda/",
-        "officialCitationUrl": "https://parlamentaria.hcdn.gob.ar/comisiones/reuniones/1214/archivo/MQEWR88X1SV5XNWQ.pdf"
-      },
-      "sourceStatus": "LOADED",
-      "priority": "MEDIUM_LOW",
-      "dataKind": "REAL_AGENDA_ITEM",
-      "importedFrom": "https://www.diputados.gob.ar/comisiones/agenda/",
-      "importedAt": "2026-05-31T13:00:00.000Z",
-      "lastCheckedAt": "2026-05-31T13:00:00.000Z",
-      "originalSources": {
-        "current": {
-          "status": "PENDING",
-          "label": "Texto vigente original",
-          "note": "Fuente original pendiente de carga"
-        },
-        "proposed": {
-          "status": "PENDING",
-          "label": "Texto propuesto original",
-          "note": "Fuente original pendiente de carga"
-        }
-      },
-      "dataStatus": "REAL_AGENDA_ITEM",
-      "createdAt": "2026-05-31T13:00:00.000Z",
-      "updatedAt": "2026-05-31T13:00:00.000Z",
-      "scopeNote": "Dato real de agenda oficial. No incluye todavía texto del proyecto ni comparación jurídica.",
+      "createdAt": "2026-06-02T04:40:38.086Z",
+      "updatedAt": "2026-06-02T04:40:38.086Z",
+      "scopeNote": "Dato real de agenda oficial del Senado. No incluye todavia comparacion juridica validada.",
       "legalAdviceWarning": "LexMapa no brinda asesoramiento legal personalizado. Verifique siempre la fuente legal aplicable."
     },
     {
       "id": "parque-marino-monte-leon",
-      "title": "Parque Interjurisdiccional Marino Monte León",
+      "title": "Parque Interjurisdiccional Marino Monte Leon",
       "status": "IN_DEBATE",
       "jurisdiction": {
         "country": "AR",
         "level": "NATIONAL"
       },
       "chamber": "SENATE",
-      "statusLabelForUsers": "En reunión de asesores",
+      "statusLabelForUsers": "En reunion de asesores",
       "scheduledTreatmentDate": "2026-06-02T12:30:00-03:00",
-      "committees": [
-        "Asuntos Constitucionales",
-        "Ambiente y Desarrollo Sustentable"
-      ],
-      "officialDescription": "Proyecto de ley que aprueba el convenio de creación del Parque Interjurisdiccional Marino Monte León entre el Estado Nacional y la Provincia de Santa Cruz.",
-      "plainLanguageSummary": "Proyecto para aprobar la creación de un parque marino interjurisdiccional.",
+      "committees": ["Asuntos Constitucionales", "Ambiente y Desarrollo Sustentable"],
+      "officialDescription": "Proyecto de ley que aprueba el convenio de creacion del Parque Interjurisdiccional Marino Monte Leon entre el Estado Nacional y la Provincia de Santa Cruz. Expediente S-361/26.",
+      "plainLanguageSummary": "Proyecto para aprobar la creacion de un parque marino interjurisdiccional.",
       "typeOfChange": "Proyecto en agenda oficial",
       "summary": {
-        "headline": "Qué propone el Parque Marino Monte León",
-        "short": "Proyecto para aprobar la creación de un parque marino interjurisdiccional.",
+        "headline": "Parque Interjurisdiccional Marino Monte Leon",
+        "short": "Proyecto para aprobar la creacion de un parque marino interjurisdiccional.",
         "keyPoints": [
-          "La agenda del Senado lo ubica en reunión conjunta de asesores.",
-          "El expediente informado es S-361/26.",
-          "La comparación artículo por artículo todavía no está cargada."
+          "Figura en una agenda oficial de comisiones del Senado argentino.",
+          "LexMapa muestra este item como cambio en debate con fuente trazable.",
+          "La comparacion articulo por articulo todavia no esta cargada."
         ],
         "whatItMeans": [
-          "Puede crear o aprobar un esquema de gestión compartida entre Nación y Santa Cruz.",
-          "Hasta cargar el convenio, LexMapa no detalla obligaciones institucionales."
+          "El tema esta proximo a tratarse o revisarse en comision.",
+          "Hasta cargar y revisar los textos, no se muestran diffs legales inventados."
         ],
         "limitations": [
-          "Dato importado manualmente desde agenda oficial.",
-          "Texto propuesto original pendiente de carga.",
-          "No hay diff legal artículo por artículo cargado."
+          "Dato importado por Worker deterministico desde agenda oficial.",
+          "Texto legal pendiente de extraccion y revision para construir el diff.",
+          "No hay diff legal articulo por articulo cargado.",
+          "Puede no existir texto vigente comparable si se trata de aprobacion de convenio."
         ],
-        "legalAdviceWarning": "LexMapa no brinda asesoramiento legal personalizado. Verifique siempre la fuente legal aplicable."
+        "legalAdviceWarning": "LexMapa explica cambios legales en lenguaje simple, pero no brinda asesoramiento legal personalizado."
       },
       "topics": [
         {
           "id": "ambiente",
           "label": "Ambiente",
-          "summaryPlainLanguage": "Protección ambiental y conservación."
+          "summaryPlainLanguage": "Proteccion ambiental y conservacion."
         },
         {
           "id": "areas-protegidas",
-          "label": "Áreas protegidas",
-          "summaryPlainLanguage": "Espacios con reglas especiales de conservación."
+          "label": "Areas protegidas",
+          "summaryPlainLanguage": "Espacios con reglas especiales de conservacion."
         },
         {
           "id": "santa-cruz",
           "label": "Santa Cruz",
-          "summaryPlainLanguage": "Provincia vinculada al convenio de creación."
+          "summaryPlainLanguage": "Provincia vinculada al convenio de creacion."
         },
         {
           "id": "conservacion-marina",
-          "label": "Conservación marina",
-          "summaryPlainLanguage": "Protección de ecosistemas y biodiversidad marina."
+          "label": "Conservacion marina",
+          "summaryPlainLanguage": "Proteccion de ecosistemas y biodiversidad marina."
         }
       ],
       "affectedGroups": [
         {
           "id": "ciudadanos",
           "label": "Ciudadanos",
-          "impactSummary": "Podrían tener nuevos espacios de protección o uso regulado."
+          "impactSummary": "Podrian tener nuevos espacios de proteccion o uso regulado."
         },
         {
           "id": "estado-nacional",
           "label": "Estado nacional",
-          "impactSummary": "Podría compartir gestión o responsabilidades sobre el parque."
+          "impactSummary": "Podria compartir gestion o responsabilidades sobre el parque."
         },
         {
           "id": "provincia-santa-cruz",
           "label": "Provincia de Santa Cruz",
-          "impactSummary": "Podría intervenir en la administración del área."
+          "impactSummary": "Podria intervenir en la administracion del area."
         },
         {
           "id": "sectores-ambientales",
           "label": "Sectores ambientales",
-          "impactSummary": "Podrían participar o monitorear la conservación del área."
+          "impactSummary": "Podrian participar o monitorear la conservacion del area."
         }
       ],
       "diffs": [],
-      "queryExamples": [
-        "Monte León",
-        "parque marino",
-        "Santa Cruz",
-        "áreas protegidas"
-      ],
+      "queryExamples": ["Monte Leon", "parque marino", "Santa Cruz", "areas protegidas"],
       "source": {
-        "id": "senado-asuntos-constitucionales-agenda-2026-06-02",
+        "id": "senado-asuntos-constitucionales-agenda-2026-06",
         "name": "Agenda oficial Senado - Asuntos Constitucionales",
         "sourceUrl": "https://www.senado.gob.ar/parlamentario/comisiones/verAgenda/50",
-        "retrievedAt": "2026-05-31T13:00:00.000Z",
+        "retrievedAt": "2026-06-02T04:40:38.086Z",
         "official": true
       },
       "sourceLinks": {
-        "officialAgendaSourceUrl": "https://www.senado.gob.ar/parlamentario/comisiones/verAgenda/50"
+        "officialAgendaSourceUrl": "https://www.senado.gob.ar/parlamentario/comisiones/verAgenda/50",
+        "officialCitationUrl": "https://www.senado.gob.ar/parlamentario/comisiones/verExp/361.26/S/PL",
+        "proposedTextOriginalUrl": "https://www.senado.gob.ar/parlamentario/parlamentaria/495191/downloadPdf"
       },
-      "sourceStatus": "LOADED",
+      "sourceStatus": "NEEDS_REVIEW",
       "priority": "MEDIUM_LOW",
       "dataKind": "REAL_AGENDA_ITEM",
       "importedFrom": "https://www.senado.gob.ar/parlamentario/comisiones/verAgenda/50",
-      "importedAt": "2026-05-31T13:00:00.000Z",
-      "lastCheckedAt": "2026-05-31T13:00:00.000Z",
+      "importedAt": "2026-06-02T04:40:38.086Z",
+      "lastCheckedAt": "2026-06-02T04:40:38.086Z",
       "originalSources": {
         "current": {
           "status": "PENDING",
           "label": "Texto vigente original",
-          "note": "Fuente original pendiente de carga"
+          "note": "El item aprueba un convenio y requiere revision humana para determinar si hay texto vigente comparable."
         },
         "proposed": {
-          "status": "PENDING",
+          "status": "LOADED",
           "label": "Texto propuesto original",
-          "note": "Fuente original pendiente de carga"
+          "name": "PDF oficial Senado - S-361/26",
+          "sourceUrl": "https://www.senado.gob.ar/parlamentario/parlamentaria/495191/downloadPdf"
         }
       },
       "dataStatus": "REAL_AGENDA_ITEM",
-      "createdAt": "2026-05-31T13:00:00.000Z",
-      "updatedAt": "2026-05-31T13:00:00.000Z",
-      "scopeNote": "Dato real de agenda oficial. No incluye todavía texto del proyecto ni comparación jurídica.",
+      "createdAt": "2026-06-02T04:40:38.086Z",
+      "updatedAt": "2026-06-02T04:40:38.086Z",
+      "scopeNote": "Dato real de agenda oficial del Senado. No incluye todavia comparacion juridica validada.",
       "legalAdviceWarning": "LexMapa no brinda asesoramiento legal personalizado. Verifique siempre la fuente legal aplicable."
     }
   ]

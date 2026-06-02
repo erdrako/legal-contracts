@@ -47,10 +47,10 @@ Fixture principal:
 fixtures/change-proposals.congress-agenda.example.json
 ```
 
-Este fixture contiene items reales importados manualmente desde agendas
-oficiales de Senado y Diputados con `dataKind = REAL_AGENDA_ITEM`. Mientras no
-esten cargados los textos vigente/propuesto originales, los `diffs` quedan
-vacios para no inventar comparaciones legales.
+Este fixture contiene el vertical slice de Senado con items reales importados
+desde agendas oficiales y `dataKind = REAL_AGENDA_ITEM`. Mientras no esten
+cargados y revisados los textos vigente/propuesto originales, los `diffs`
+quedan vacios para no inventar comparaciones legales.
 
 ## Estructura
 

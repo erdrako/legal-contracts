@@ -40,8 +40,8 @@ Este mapeo responde preguntas como:
 
 ```text
 que se trata sobre Ley Hojarasca
-que cambia con Super RIGI
 que pasa con biocombustibles
+que se trata sobre el Parque Marino Monte Leon
 ```
 
 ## Tabla de mapeo

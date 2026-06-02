@@ -90,7 +90,8 @@
           "type": "string",
           "enum": [
             "LOADED",
-            "PENDING"
+            "PENDING",
+            "NEEDS_REVIEW"
           ]
         },
         "label": {
@@ -129,6 +130,25 @@
         },
         "proposedTextOriginalUrl": {
           "type": "string"
+        },
+        "proposedTextOriginalUrls": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "label",
+              "url"
+            ],
+            "properties": {
+              "label": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string"
+              }
+            }
+          }
         },
         "currentLawOriginalUrl": {
           "type": "string"
@@ -260,7 +280,8 @@
           "type": "string",
           "enum": [
             "LOADED",
-            "PENDING"
+            "PENDING",
+            "NEEDS_REVIEW"
           ]
         },
         "originalSource": {
@@ -473,7 +494,8 @@
           "type": "string",
           "enum": [
             "LOADED",
-            "PENDING"
+            "PENDING",
+            "NEEDS_REVIEW"
           ]
         },
         "priority": {
