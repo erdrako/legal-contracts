@@ -141,6 +141,7 @@ export type ProcessingJobType =
   | "DETECT_AFFECTED_LEGAL_ITEMS"
   | "CLASSIFY_CHANGE_OPERATIONS"
   | "GENERATE_DIFF_CANDIDATES"
+  | "RESOLVE_DIFF_FALLBACK"
   | "VALIDATE_DIFF_STRUCTURE";
 
 export type ProcessorCapability =
@@ -150,6 +151,7 @@ export type ProcessorCapability =
   | "AFFECTED_LEGAL_ITEMS"
   | "LEGAL_OPERATIONS"
   | "LEGAL_DIFF_CANDIDATES"
+  | "LEGAL_DIFF_FALLBACK"
   | "OLLAMA";
 
 export type ProcessingArtifactType =
@@ -164,14 +166,49 @@ export type ProcessingArtifactType =
 
 export type LegalChangeOperationType =
   | "REPEAL_LAW"
+  | "REPLACE_LAW"
+  | "REMOVE_ARTICLE"
+  | "MODIFY_ARTICLE"
+  | "ADD_ARTICLE"
+  | "REMOVE_SECTION"
+  | "MODIFY_SECTION"
+  | "ADD_SECTION"
+  | "REMOVE_PARAGRAPH"
+  | "MODIFY_PARAGRAPH"
+  | "ADD_PARAGRAPH"
+  | "REMOVE_SUBSECTION"
+  | "MODIFY_SUBSECTION"
+  | "ADD_SUBSECTION"
   | "REPEAL_PROVISION"
   | "MODIFY_PROVISION"
   | "ADD_PROVISION"
   | "REPLACE_TEXT"
   | "NEW_REGIME"
+  | "ADD_NEW_REGIME"
+  | "APPROVE_TREATY"
+  | "APPROVE_AGREEMENT"
+  | "UPDATE_AMOUNT"
+  | "UPDATE_PERCENTAGE"
+  | "UPDATE_DEADLINE"
+  | "EXTEND_DEADLINE"
+  | "SUSPEND_EFFECT"
+  | "RESTORE_EFFECT"
+  | "DECLARE_EMERGENCY"
+  | "AUTHORIZE_ACTION"
+  | "TRANSFER_COMPETENCE"
+  | "DEFINE_TERM"
+  | "ANNEX_CHANGE"
+  | "TEXT_CORRECTION"
   | "APPROVAL_ONLY"
   | "NOT_COMPARABLE"
+  | "UNKNOWN_OPERATION"
   | "NEEDS_REVIEW";
+
+export type ResolvedLegalDiffPublicStatus =
+  | "DIFF_VALIDATED"
+  | "DIFF_PARTIAL"
+  | "DIFF_AI_ASSISTED"
+  | "DIFF_UNRESOLVED";
 
 export type LegalProperty =
   | "subject"
@@ -490,6 +527,32 @@ export interface LegalDiffCandidate {
   confidence: ConfidenceLevel;
   reviewStatus: ReviewStatus;
   validationWarnings: string[];
+}
+
+export interface ResolvedLegalDiff {
+  id: string;
+  candidateId: string;
+  proposalId: string;
+  jobId?: string;
+  operationId?: string;
+  affectedLegalItemId?: string;
+  fallbackJobId?: string;
+  title: string;
+  publicStatus: ResolvedLegalDiffPublicStatus;
+  changeType: LegalDiffChangeType;
+  operationType?: LegalChangeOperationType;
+  targetLabel?: string;
+  currentVersion?: LegalVersion;
+  proposedVersion?: LegalVersion;
+  explanationPlainLanguage: string;
+  practicalImpact: string;
+  confidence: ConfidenceLevel;
+  validationWarnings: string[];
+  sourceTrace: Record<string, unknown>;
+  resolverVersion: string;
+  remoteAssisted: boolean;
+  createdAt: IsoDateString;
+  updatedAt: IsoDateString;
 }
 
 export interface LegalChangeProposal {

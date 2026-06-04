@@ -52,6 +52,7 @@ ProcessorJobResultRequestDto
 AffectedLegalItem
 ChangeOperation
 LegalDiffCandidate
+ResolvedLegalDiff
 ```
 
 Estos contratos modelan cola, heartbeats, artifacts y candidatos de diff; no
@@ -61,6 +62,11 @@ representan datos legales aprobados para publicacion.
 `detectionEvidence` y `reviewReason`. Eso documenta por que una ley fue marcada
 como posible afectada, pero no implica que la ley vigente ya este importada ni
 que exista un diff aprobado.
+
+`ResolvedLegalDiff` modela la salida del resolver deterministico y del fallback
+remoto. Puede estar `DIFF_VALIDATED`, `DIFF_PARTIAL`, `DIFF_AI_ASSISTED` o
+`DIFF_UNRESOLVED`; la UI debe mostrar estado, warnings y fuentes en todos los
+casos.
 
 Fixture principal:
 
