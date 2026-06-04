@@ -1,0 +1,201 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lexmapa.local/schemas/remote-processor.schema.json",
+  "title": "LexMapa Remote Processor Protocol",
+  "type": "object",
+  "additionalProperties": false,
+  "$defs": {
+    "processorStatus": {
+      "type": "string",
+      "enum": ["ONLINE", "OFFLINE", "DRAINING", "DISABLED"]
+    },
+    "jobStatus": {
+      "type": "string",
+      "enum": ["PENDING", "LEASED", "PROCESSING", "COMPLETED", "FAILED", "NEEDS_REVIEW", "NOT_COMPARABLE"]
+    },
+    "jobType": {
+      "type": "string",
+      "enum": [
+        "RESOLVE_CURRENT_TEXT",
+        "FETCH_ORIGINAL_DOCUMENT",
+        "EXTRACT_PDF_TEXT",
+        "OCR_DOCUMENT",
+        "SEGMENT_PROVISIONS",
+        "DETECT_LEGAL_REFERENCES",
+        "DETECT_AFFECTED_LEGAL_ITEMS",
+        "CLASSIFY_CHANGE_OPERATIONS",
+        "GENERATE_DIFF_CANDIDATES",
+        "VALIDATE_DIFF_STRUCTURE"
+      ]
+    },
+    "capability": {
+      "type": "string",
+      "enum": [
+        "PDF_TEXT",
+        "OCR",
+        "LEGAL_REFERENCES",
+        "AFFECTED_LEGAL_ITEMS",
+        "LEGAL_OPERATIONS",
+        "LEGAL_DIFF_CANDIDATES",
+        "OLLAMA"
+      ]
+    },
+    "artifactType": {
+      "type": "string",
+      "enum": [
+        "NORMALIZED_TEXT",
+        "OCR_TEXT",
+        "PROVISIONS",
+        "REFERENCES",
+        "AFFECTED_LEGAL_ITEMS",
+        "OPERATIONS",
+        "DIFF_CANDIDATES",
+        "VALIDATION_REPORT"
+      ]
+    },
+    "processorNode": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "displayName", "status", "capabilities"],
+      "properties": {
+        "id": { "type": "string" },
+        "displayName": { "type": "string" },
+        "status": { "$ref": "#/$defs/processorStatus" },
+        "lastSeenAt": { "type": "string", "format": "date-time" },
+        "tier": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "capabilities": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/capability" }
+        },
+        "currentJobId": { "type": "string" },
+        "modelName": { "type": "string" },
+        "processorVersion": { "type": "string" }
+      }
+    },
+    "processingJob": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "jobType", "status", "priority", "requiredCapabilities", "attempts", "createdAt", "updatedAt"],
+      "properties": {
+        "id": { "type": "string" },
+        "jobType": { "$ref": "#/$defs/jobType" },
+        "status": { "$ref": "#/$defs/jobStatus" },
+        "priority": { "type": "integer" },
+        "requiredCapabilities": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/capability" }
+        },
+        "sourceLabel": { "type": "string" },
+        "sourceUrl": { "type": "string" },
+        "leaseOwnerId": { "type": "string" },
+        "leaseUntil": { "type": "string", "format": "date-time" },
+        "attempts": { "type": "integer", "minimum": 0 },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["artifactType", "content"],
+      "properties": {
+        "artifactType": { "$ref": "#/$defs/artifactType" },
+        "content": {},
+        "contentHash": { "type": "string" },
+        "sourceUrl": { "type": "string" }
+      }
+    }
+  },
+  "properties": {
+    "enrollRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["displayName", "capabilities"],
+      "properties": {
+        "displayName": { "type": "string" },
+        "tier": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "capabilities": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/capability" }
+        },
+        "modelName": { "type": "string" },
+        "processorVersion": { "type": "string" }
+      }
+    },
+    "enrollResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["processor", "processorSecret"],
+      "properties": {
+        "processor": { "$ref": "#/$defs/processorNode" },
+        "processorSecret": { "type": "string" }
+      }
+    },
+    "claimJobResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "job": {
+          "allOf": [
+            { "$ref": "#/$defs/processingJob" },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["input"],
+              "properties": {
+                "input": { "type": "object" }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "jobResultRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "result"],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["COMPLETED", "NEEDS_REVIEW", "NOT_COMPARABLE"]
+        },
+        "result": { "type": "object" },
+        "artifacts": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/artifact" }
+        },
+        "warnings": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "confidence": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "ocr": { "type": "number", "minimum": 0, "maximum": 1 },
+            "referenceResolution": { "type": "number", "minimum": 0, "maximum": 1 },
+            "operationClassification": { "type": "number", "minimum": 0, "maximum": 1 },
+            "diffGeneration": { "type": "number", "minimum": 0, "maximum": 1 }
+          }
+        }
+      }
+    },
+    "queueStatus": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["generatedAt", "processors", "counts", "jobs"],
+      "properties": {
+        "generatedAt": { "type": "string", "format": "date-time" },
+        "processors": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/processorNode" }
+        },
+        "counts": { "type": "object" },
+        "jobs": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/processingJob" }
+        }
+      }
+    }
+  }
+}

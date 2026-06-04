@@ -42,6 +42,26 @@ exponer fuente de agenda, camara, fecha de tratamiento, comisiones y estado de
 fuentes. Si todavia no hay textos originales cargados, `/change-proposals/:id/diffs`
 puede devolver `diffs: []` y el frontend debe mostrar el estado pendiente.
 
+## Procesadores remotos
+
+```http
+GET  /processors/status
+GET  /processing-queue?limit=
+POST /processors/enroll
+POST /processors/heartbeat
+POST /processors/jobs/claim
+POST /processors/jobs/:id/progress
+POST /processors/jobs/:id/result
+POST /processors/jobs/:id/fail
+POST /processors/jobs/:id/release
+POST /processing-queue/jobs
+POST /processing-queue/senate-diff-jobs
+```
+
+Esta superficie coordina procesadores Docker externos por pull. Los resultados
+son operativos y quedan sujetos a validacion: artifacts, normas afectadas,
+disposiciones extraidas, operaciones y candidatos de diff.
+
 ## Datavalidation interno
 
 ```http

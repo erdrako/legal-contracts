@@ -120,6 +120,59 @@ export type AgendaPriority = "HIGH" | "MEDIUM_HIGH" | "MEDIUM" | "MEDIUM_LOW" | 
 
 export type ImpactLevel = "LOW" | "MEDIUM" | "HIGH" | "UNKNOWN";
 
+export type ProcessorNodeStatus = "ONLINE" | "OFFLINE" | "DRAINING" | "DISABLED";
+
+export type ProcessingJobStatus =
+  | "PENDING"
+  | "LEASED"
+  | "PROCESSING"
+  | "COMPLETED"
+  | "FAILED"
+  | "NEEDS_REVIEW"
+  | "NOT_COMPARABLE";
+
+export type ProcessingJobType =
+  | "RESOLVE_CURRENT_TEXT"
+  | "FETCH_ORIGINAL_DOCUMENT"
+  | "EXTRACT_PDF_TEXT"
+  | "OCR_DOCUMENT"
+  | "SEGMENT_PROVISIONS"
+  | "DETECT_LEGAL_REFERENCES"
+  | "DETECT_AFFECTED_LEGAL_ITEMS"
+  | "CLASSIFY_CHANGE_OPERATIONS"
+  | "GENERATE_DIFF_CANDIDATES"
+  | "VALIDATE_DIFF_STRUCTURE";
+
+export type ProcessorCapability =
+  | "PDF_TEXT"
+  | "OCR"
+  | "LEGAL_REFERENCES"
+  | "AFFECTED_LEGAL_ITEMS"
+  | "LEGAL_OPERATIONS"
+  | "LEGAL_DIFF_CANDIDATES"
+  | "OLLAMA";
+
+export type ProcessingArtifactType =
+  | "NORMALIZED_TEXT"
+  | "OCR_TEXT"
+  | "PROVISIONS"
+  | "REFERENCES"
+  | "AFFECTED_LEGAL_ITEMS"
+  | "OPERATIONS"
+  | "DIFF_CANDIDATES"
+  | "VALIDATION_REPORT";
+
+export type LegalChangeOperationType =
+  | "REPEAL_LAW"
+  | "REPEAL_PROVISION"
+  | "MODIFY_PROVISION"
+  | "ADD_PROVISION"
+  | "REPLACE_TEXT"
+  | "NEW_REGIME"
+  | "APPROVAL_ONLY"
+  | "NOT_COMPARABLE"
+  | "NEEDS_REVIEW";
+
 export type LegalProperty =
   | "subject"
   | "affectedParty"
@@ -381,6 +434,50 @@ export interface LegalDiff {
   };
 }
 
+export interface AffectedLegalItem {
+  id: string;
+  proposalId: string;
+  legalItemId?: string;
+  title: string;
+  legalItemType?: LegalItemType;
+  referenceText: string;
+  operationType: LegalChangeOperationType;
+  currentSource: OriginalLegalSource;
+  sourceStatus: OriginalSourceStatus;
+  affectedProvisionIds: string[];
+  notes?: string;
+}
+
+export interface ChangeOperation {
+  id: string;
+  proposalId: string;
+  affectedLegalItemId?: string;
+  operationType: LegalChangeOperationType;
+  detectedVerb?: string;
+  sourceProvisionId?: string;
+  targetLegalItemId?: string;
+  targetProvisionId?: string;
+  evidenceText: string;
+  confidence: ConfidenceLevel;
+  reviewStatus: ReviewStatus;
+}
+
+export interface LegalDiffCandidate {
+  id: string;
+  proposalId: string;
+  operationId?: string;
+  affectedLegalItemId?: string;
+  title: string;
+  changeType: LegalDiffChangeType;
+  currentVersion?: LegalVersion;
+  proposedVersion?: LegalVersion;
+  explanationPlainLanguage?: string;
+  practicalImpact?: string;
+  confidence: ConfidenceLevel;
+  reviewStatus: ReviewStatus;
+  validationWarnings: string[];
+}
+
 export interface LegalChangeProposal {
   id: string;
   title: string;
@@ -415,6 +512,93 @@ export interface LegalChangeProposal {
   updatedAt?: IsoDateString;
   scopeNote?: string;
   legalAdviceWarning: string;
+}
+
+export interface ProcessorNodeDto {
+  id: string;
+  displayName: string;
+  status: ProcessorNodeStatus;
+  lastSeenAt?: IsoDateString;
+  tier?: number;
+  capabilities: ProcessorCapability[];
+  currentJobId?: string;
+  modelName?: string;
+  processorVersion?: string;
+}
+
+export interface ProcessingJobDto {
+  id: string;
+  jobType: ProcessingJobType;
+  status: ProcessingJobStatus;
+  priority: number;
+  requiredCapabilities: ProcessorCapability[];
+  sourceLabel?: string;
+  sourceUrl?: UrlString;
+  leaseOwnerId?: string;
+  leaseUntil?: IsoDateString;
+  attempts: number;
+  createdAt: IsoDateString;
+  updatedAt: IsoDateString;
+}
+
+export interface ProcessingQueueStatusDto {
+  generatedAt: IsoDateString;
+  processors: ProcessorNodeDto[];
+  counts: Record<ProcessingJobStatus, number>;
+  jobs: ProcessingJobDto[];
+}
+
+export interface ProcessorEnrollRequestDto {
+  displayName: string;
+  tier?: number;
+  capabilities: ProcessorCapability[];
+  modelName?: string;
+  processorVersion?: string;
+}
+
+export interface ProcessorEnrollResponseDto {
+  processor: ProcessorNodeDto;
+  processorSecret: string;
+}
+
+export interface ProcessorHeartbeatRequestDto {
+  status?: ProcessorNodeStatus;
+  currentJobId?: string;
+  tier?: number;
+  capabilities?: ProcessorCapability[];
+  modelName?: string;
+  processorVersion?: string;
+}
+
+export interface ProcessorClaimJobRequestDto {
+  capabilities?: ProcessorCapability[];
+  maxLeaseSeconds?: number;
+}
+
+export interface ProcessorClaimJobResponseDto {
+  job?: ProcessingJobDto & {
+    input: Record<string, unknown>;
+  };
+}
+
+export interface ProcessingArtifactDto {
+  artifactType: ProcessingArtifactType;
+  content: Record<string, unknown> | string;
+  contentHash?: string;
+  sourceUrl?: UrlString;
+}
+
+export interface ProcessorJobResultRequestDto {
+  status: Extract<ProcessingJobStatus, "COMPLETED" | "NEEDS_REVIEW" | "NOT_COMPARABLE">;
+  result: Record<string, unknown>;
+  artifacts?: ProcessingArtifactDto[];
+  warnings?: string[];
+  confidence?: {
+    ocr?: number;
+    referenceResolution?: number;
+    operationClassification?: number;
+    diffGeneration?: number;
+  };
 }
 
 export interface ChangeProposalBundle {

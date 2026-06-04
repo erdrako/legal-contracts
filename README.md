@@ -41,6 +41,22 @@ LegalChangeProposal
 `GET /search?q=` usa `LegalChangeProposalSearchResultDto` para que el backend
 pueda devolver que diffs, temas y grupos coinciden con una pregunta simple.
 
+Tambien incluye contratos para la coordinacion de procesadores remotos:
+
+```text
+ProcessorNodeDto
+ProcessingJobDto
+ProcessingQueueStatusDto
+ProcessorEnrollRequestDto
+ProcessorJobResultRequestDto
+AffectedLegalItem
+ChangeOperation
+LegalDiffCandidate
+```
+
+Estos contratos modelan cola, heartbeats, artifacts y candidatos de diff; no
+representan datos legales aprobados para publicacion.
+
 Fixture principal:
 
 ```text
