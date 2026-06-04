@@ -57,6 +57,11 @@ LegalDiffCandidate
 Estos contratos modelan cola, heartbeats, artifacts y candidatos de diff; no
 representan datos legales aprobados para publicacion.
 
+`AffectedLegalItem` puede incluir `canonicalReferenceText`,
+`detectionEvidence` y `reviewReason`. Eso documenta por que una ley fue marcada
+como posible afectada, pero no implica que la ley vigente ya este importada ni
+que exista un diff aprobado.
+
 Fixture principal:
 
 ```text

@@ -434,6 +434,17 @@ export interface LegalDiff {
   };
 }
 
+export interface AffectedLegalItemDetectionEvidence {
+  referenceText?: string;
+  canonicalReferenceText?: string;
+  evidenceText?: string;
+  detectedVerb?: string;
+  sourceProvisionId?: string;
+  confidence?: ConfidenceLevel;
+  requiresReview: boolean;
+  reviewReason?: string;
+}
+
 export interface AffectedLegalItem {
   id: string;
   proposalId: string;
@@ -441,10 +452,13 @@ export interface AffectedLegalItem {
   title: string;
   legalItemType?: LegalItemType;
   referenceText: string;
+  canonicalReferenceText?: string;
   operationType: LegalChangeOperationType;
   currentSource: OriginalLegalSource;
   sourceStatus: OriginalSourceStatus;
   affectedProvisionIds: string[];
+  detectionEvidence?: AffectedLegalItemDetectionEvidence;
+  reviewReason?: string;
   notes?: string;
 }
 
